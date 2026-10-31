@@ -19,9 +19,12 @@ Muốn bổ sung: anh sửa trực tiếp file này, hoặc bảo em "ghi vào b
 
 - Mục đích: **edit video tự động**. Anh đưa video thô, em edit bằng FFmpeg + Python
   rồi trả video hoàn chỉnh.
-- Stack: FFmpeg, Python 3, `auto-editor` (cắt khoảng lặng), `faster-whisper` (phụ đề).
+- Stack: FFmpeg, Python 3, `auto-editor` (cắt khoảng lặng), `faster-whisper` (phụ đề),
+  `edge-tts` (giọng đọc tiếng Việt), `espeak-ng` (giọng máy để chạy thử).
 - Cấu trúc thư mục:
   - `tools/edit.py`: script edit chính (xem `python3 tools/edit.py -h`).
+  - `tools/giong_doc.py`: tạo giọng đọc + phụ đề khớp từ file lời đọc `.txt`.
+  - `video/mau/`: mẫu chữ (`.ass`) và lời đọc (`.loi.txt`) theo từng sản phẩm.
   - `tools/setup.sh`: cài công cụ. Tự chạy đầu mỗi phiên cloud nhờ hook
     `.claude/hooks/session-start.sh` (khai báo trong `.claude/settings.json`).
   - `video/tho/`: video thô (không đưa lên git).
@@ -51,7 +54,16 @@ python3 tools/edit.py video/tho/abc.mp4 \
 Tùy chọn chính: `--tu/--den` (cắt đầu/cuối), `--cat-lang` (bỏ khoảng lặng,
 chỉnh bằng `--nguong-lang`, `--le`), `--phu-de` hoặc `--srt file.srt`,
 `--khung 9:16|16:9|1:1|4:5`, `--nhac`, `--logo`, `--tieu-de`, `--chu file.ass`
-(nhiều đoạn chữ theo thời gian), `--chuan-am`.
+(nhiều đoạn chữ theo thời gian), `--chuan-am`, `--giong loi.txt` (giọng đọc + phụ đề;
+kèm `--giong-doc vi-VN-HoaiMyNeural|vi-VN-NamMinhNeural`, `--toc-do +10%`,
+`--nen-am-luong 0.25`, `--phu-de-cao 60`, `--giong-engine espeak` để chạy thử).
+
+Video sản phẩm có giọng đọc (mẫu Fe silic):
+```bash
+python3 tools/edit.py video/tho/IMG_5312.MOV --khung 9:16 \
+  --chu video/mau/fe-silic-ei-giong.ass --giong video/mau/fe-silic-ei.loi.txt \
+  --phu-de-cao 60 --mo-dau-ket-thuc --chuan-am
+```
 
 ## Quy trình edit video
 
@@ -82,6 +94,10 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   lá "LINH KIỆN QUỲNH DIỄN ► ĐẶT HÀNG NGAY!".
 - Nội dung chữ lấy từ mô tả sản phẩm anh gửi, viết ngắn gọn từng ý.
 - Video sản phẩm thường không có lời nói, nên không dùng `--cat-lang`.
+- Anh muốn có **giọng đọc kèm phụ đề**. Lời đọc viết từ mô tả sản phẩm, ~7 câu cho
+  video 30s, dòng cuối "Linh Kiện Quỳnh Diễn. Đặt hàng ngay!". Số, đơn vị, từ tiếng Anh
+  viết theo cách đọc ở vế sau dấu `|` (0.5mm → "không phẩy năm li", inverter → "in vớt tơ").
+  Bản có giọng đọc dùng mẫu chữ `*-giong.ass` (bỏ hộp ý chính, tiêu đề đưa lên trên).
 - Font: DejaVu Sans (có đủ dấu tiếng Việt). Font này không có emoji; dùng ✔ ► thay emoji.
 
 ## Ghi nhớ khác
@@ -96,3 +112,5 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   `huggingface.co`. Còn thiếu `*.hf.co` (máy chủ tải model Whisper), nên `--phu-de`
   chưa chạy được. Tạm thời dùng `--srt`.
 - Không tải video qua Drive connector (base64 quá nặng), dùng curl như trên.
+- Giọng đọc `edge-tts` cần mở mạng `speech.platform.bing.com` (chưa mở). Khi chưa có,
+  chỉ chạy thử được bằng `--giong-engine espeak` (giọng máy, không dùng để đăng).

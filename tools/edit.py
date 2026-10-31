@@ -107,12 +107,18 @@ def escape_filter_path(p):
     return str(p).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
 
-def render(src, dst, args, srt):
+def render(src, dst, args, srt, voice=None, voice_end=0.0):
     w, h = video_size(src)
-    total = duration(src)
+    video_len = duration(src)
+    # Giọng đọc dài hơn video thì giữ khung hình cuối cho đến hết lời.
+    total = max(video_len, voice_end + 0.8) if voice else video_len
     inputs = ["-i", src]
     vchain = []
     out_w, out_h = w, h
+
+    if total > video_len + 0.01:
+        vchain.append(f"tpad=stop_mode=clone:stop_duration={total - video_len:.3f}")
+        print(f"Giọng đọc dài hơn video: giữ khung cuối thêm {total - video_len:.1f}s")
 
     if args.khung:
         f, out_w, out_h = frame_filter(args.khung, w, h)
@@ -120,8 +126,9 @@ def render(src, dst, args, srt):
     if srt:
         # libass tính cỡ chữ theo khung chuẩn cao 288, không theo pixel thật.
         size = 11 if out_h > out_w else 18
+        margin = args.phu_de_cao if args.phu_de_cao is not None else 24
         style = (f"FontName={FONT},FontSize={size},Bold=1,PrimaryColour=&H00FFFFFF,"
-                 f"OutlineColour=&H00000000,BorderStyle=1,Outline=1.5,MarginV=24")
+                 f"OutlineColour=&H00000000,BorderStyle=1,Outline=1.5,MarginV={margin}")
         vchain.append(f"subtitles='{escape_filter_path(srt)}':force_style='{style}'")
     if args.chu:
         # File ASS tự định kiểu chữ, vị trí, thời gian nên không ép style.
@@ -152,11 +159,18 @@ def render(src, dst, args, srt):
         vlast = "v2"
 
     alast = "0:a"
+    if voice:
+        # Tiếng gốc nhỏ lại làm nền cho giọng đọc.
+        inputs += ["-i", voice]
+        graph.append(f"[0:a]volume={args.nen_am_luong},apad[orig]")
+        graph.append(f"[orig][{idx}:a]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[av]")
+        alast = "av"
+        idx += 1
     if args.nhac:
         inputs += ["-stream_loop", "-1", "-i", args.nhac]
         graph.append(f"[{idx}:a]volume={args.nhac_am_luong},"
                      f"afade=t=out:st={max(0, total - 2)}:d=2[bgm]")
-        graph.append(f"[0:a][bgm]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[a1]")
+        graph.append(f"[{alast}][bgm]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[a1]")
         alast = "a1"
         idx += 1
     if args.chuan_am:
@@ -184,6 +198,14 @@ def main():
     p.add_argument("--srt", help="dùng file phụ đề .srt có sẵn thay vì tự nhận dạng")
     p.add_argument("--model", default="small", help="model Whisper: tiny/base/small/medium/large-v3")
     p.add_argument("--ngon-ngu", default="vi", help="ngôn ngữ lời nói")
+    p.add_argument("--giong", help="file lời đọc .txt: tạo giọng đọc + phụ đề khớp (xem tools/giong_doc.py)")
+    p.add_argument("--giong-engine", default="edge", choices=["edge", "espeak"],
+                   help="edge = giọng Microsoft (cần mạng), espeak = giọng máy để chạy thử")
+    p.add_argument("--giong-doc", default="vi-VN-HoaiMyNeural",
+                   help="vi-VN-HoaiMyNeural (nữ) hoặc vi-VN-NamMinhNeural (nam)")
+    p.add_argument("--toc-do", default="+0%", help="tốc độ đọc, vd +10%% hoặc -5%%")
+    p.add_argument("--nen-am-luong", default="0.25", help="âm lượng tiếng gốc khi có giọng đọc (0-1)")
+    p.add_argument("--phu-de-cao", type=int, help="khoảng cách phụ đề tới đáy (thang 288, mặc định 24)")
     p.add_argument("--khung", help="tỉ lệ khung mới, vd 9:16, 16:9, 1:1")
     p.add_argument("--nhac", help="file nhạc nền")
     p.add_argument("--nhac-am-luong", default="0.15", help="âm lượng nhạc nền (0-1)")
@@ -218,13 +240,18 @@ def main():
             cur = tmp / "2_cut.mp4"
             print(f"Cắt lặng: {before:.1f}s -> {duration(cur):.1f}s")
         srt = None
-        if args.srt:
+        voice, voice_end = None, 0.0
+        if args.giong:
+            from giong_doc import make_voice
+            voice, srt, voice_end = make_voice(args.giong, tmp, args.giong_engine,
+                                               args.giong_doc, args.toc_do)
+        elif args.srt:
             srt = tmp / "subs.srt"
             shutil.copy(args.srt, srt)
         elif args.phu_de:
             srt = tmp / "subs.srt"
             transcribe(cur, srt, args.model, args.ngon_ngu)
-        render(cur, dst, args, srt)
+        render(cur, dst, args, srt, voice, voice_end)
         if srt and args.giu_srt:
             shutil.copy(srt, dst.with_suffix(".srt"))
 
