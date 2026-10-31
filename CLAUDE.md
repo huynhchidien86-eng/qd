@@ -128,6 +128,13 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   `1lzwhDqIbZ2mvtNnYZLoQRP_6_xvpFuCn`).
 - Ảnh ống gen có sẵn trên Drive: "Ống gen Amiang HD.jpg", "Ống gen Amiang 1..8 HD.jpg" (mỗi ảnh
   một thư mục riêng, chưa chia sẻ lúc 31/10).
+- **Nơi lưu video đã edit**: Drive `MAKETING/AFFILIATE HÀNG TOP/VIDEO ĐÃ EDIT (Claude)` (folder id
+  `1UknrR5cUuxUuMqtidoY3ke0p5yG3s3Ii`). Em **không tự upload được** (Drive connector chỉ nhận file nhỏ
+  qua base64): đặt tên file dạng `NN Tên sản phẩm - kiểu.mp4` trong `video/xong/ban-cuoi/`, gửi anh
+  bằng SendUserFile, anh tải về rồi kéo vào thư mục. Máy cloud bị xoá sau phiên: video chưa gửi
+  anh là mất (nhưng làm lại được từ repo vì lệnh + mẫu đã lưu).
+- Đã gửi bản cuối: 01 Fe silic EI, 02 Ổ cắm SOPOKA 6000W, 03 Tụ CBB 60uF, 04 Ống gen sợi thủy tinh,
+  05 Hộp nhựa WANCHI KW-CN-170.
 - **Thư mục video chính để "làm dần"**: `MAKETING/AFFILIATE HÀNG TOP/VIDEO Tiep thi` (đã chia sẻ).
   Danh sách + mã Drive + trạng thái: `video/danh-sach-tiep-thi.md`. Làm xong video nào thì
   đánh dấu ✅ ở đó. Video quay ngang 4K: dùng `--day-khung` (cắt đầy khung dọc).
