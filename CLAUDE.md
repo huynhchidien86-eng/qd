@@ -50,7 +50,8 @@ python3 tools/edit.py video/tho/abc.mp4 \
 
 Tùy chọn chính: `--tu/--den` (cắt đầu/cuối), `--cat-lang` (bỏ khoảng lặng,
 chỉnh bằng `--nguong-lang`, `--le`), `--phu-de` hoặc `--srt file.srt`,
-`--khung 9:16|16:9|1:1|4:5`, `--nhac`, `--logo`, `--tieu-de`, `--chuan-am`.
+`--khung 9:16|16:9|1:1|4:5`, `--nhac`, `--logo`, `--tieu-de`, `--chu file.ass`
+(nhiều đoạn chữ theo thời gian), `--chuan-am`.
 
 ## Quy trình edit video
 
@@ -61,14 +62,37 @@ Khi anh bảo "lấy video thô edit":
 4. Trích vài khung hình kiểm tra phụ đề/tiêu đề trước khi giao.
 5. Gửi file trong `video/xong/` cho anh.
 
-Phong cách mặc định của anh: _chưa chốt — sẽ ghi sau khi edit thử video đầu tiên._
+## Thương hiệu của anh
+
+- Tên shop: **Linh Kiện Quỳnh Diễn**. Logo ghi **QUYNDIEN Electronic**: hình con chip
+  mạch điện màu xanh lá, chữ QUYNDIEN xanh lá đậm, chữ "Electronic" xanh đen, nền trắng.
+- Màu thương hiệu: xanh lá `#22B526` (trong file ASS viết `&H0026B522`), điểm nhấn
+  chữ vàng `#FFD700` (`&H0000D7FF`).
+- File logo: _chưa có trong repo_. Khi có, lưu ở `video/assets/logo-quyndien.png` và
+  thêm `--logo video/assets/logo-quyndien.png` khi edit.
+- Mặt hàng: linh kiện điện tử, lõi biến áp (Fe silic EI…). Video đăng bán hàng.
+
+## Phong cách mặc định (video sản phẩm)
+
+Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-silic-ei.ass`.
+- Khung dọc 9:16 (1080x1920), giữ độ dài gốc, mờ dần đầu/cuối, `--chuan-am`.
+- Chữ chạy theo thời gian bằng file ASS (`--chu`): tên shop trong hộp xanh lá cố định
+  ở trên; tiêu đề sản phẩm lớn màu vàng viền đen 4 giây đầu; mỗi 4–5 giây một ý chính
+  (công dụng, đặc điểm, size, cam kết) trong hộp đen mờ ở dưới; cuối video hộp xanh
+  lá "LINH KIỆN QUỲNH DIỄN ► ĐẶT HÀNG NGAY!".
+- Nội dung chữ lấy từ mô tả sản phẩm anh gửi, viết ngắn gọn từng ý.
+- Video sản phẩm thường không có lời nói, nên không dùng `--cat-lang`.
+- Font: DejaVu Sans (có đủ dấu tiếng Việt). Font này không có emoji; dùng ✔ ► thay emoji.
 
 ## Ghi nhớ khác
 
 <!-- Bất cứ điều gì anh muốn em nhớ qua các phiên: sở thích, việc cần tránh, ngữ cảnh riêng. -->
 
-- Mạng của môi trường cloud đang **chặn `huggingface.co`**, nên `--phu-de` (tải model
-  Whisper) chưa chạy được. Cần thêm `huggingface.co` vào Allowed domains trong cài đặt
-  Network access của môi trường. Tạm thời dùng `--srt` với file phụ đề có sẵn.
-- Google Drive connector tải file dạng base64 qua hội thoại, chỉ hợp với file nhỏ
-  (vài MB). Video lớn nên gửi bằng cách khác.
+- Video thô ở Google Drive: `MAKETING/MEDIA/Video Tài/VIDEO` (folder id
+  `1DjeP_fG4AjUrYxNTPAv1yit1A2GVlxXY`). Tìm file bằng Drive connector, rồi tải bằng:
+  `curl -sSL -o video/tho/<tên> "https://drive.usercontent.google.com/download?id=<FILE_ID>&export=download&confirm=t"`.
+  File phải được chia sẻ "Bất kỳ ai có đường liên kết", nếu không sẽ tải về trang đăng nhập (HTML).
+- Môi trường cloud "Default" đã mở mạng cho `drive.google.com`, `drive.usercontent.google.com`,
+  `huggingface.co`. Còn thiếu `*.hf.co` (máy chủ tải model Whisper), nên `--phu-de`
+  chưa chạy được. Tạm thời dùng `--srt`.
+- Không tải video qua Drive connector (base64 quá nặng), dùng curl như trên.

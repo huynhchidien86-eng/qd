@@ -123,6 +123,9 @@ def render(src, dst, args, srt):
         style = (f"FontName={FONT},FontSize={size},Bold=1,PrimaryColour=&H00FFFFFF,"
                  f"OutlineColour=&H00000000,BorderStyle=1,Outline=1.5,MarginV=24")
         vchain.append(f"subtitles='{escape_filter_path(srt)}':force_style='{style}'")
+    if args.chu:
+        # File ASS tự định kiểu chữ, vị trí, thời gian nên không ép style.
+        vchain.append(f"subtitles='{escape_filter_path(args.chu)}'")
     if args.tieu_de:
         # Cỡ chữ vừa chiều ngang khung (ký tự rộng khoảng 0.65 cỡ chữ).
         fontsize = min(out_h // 14, int(out_w * 0.9 / (0.65 * max(len(args.tieu_de), 1))))
@@ -185,6 +188,7 @@ def main():
     p.add_argument("--nhac", help="file nhạc nền")
     p.add_argument("--nhac-am-luong", default="0.15", help="âm lượng nhạc nền (0-1)")
     p.add_argument("--logo", help="file logo PNG, đặt góc trên bên phải")
+    p.add_argument("--chu", help="file .ass chứa các đoạn chữ hiện theo thời gian (xem video/mau/)")
     p.add_argument("--tieu-de", help="chữ tiêu đề hiện ở đầu video")
     p.add_argument("--tieu-de-giay", type=float, default=3.0, help="tiêu đề hiện bao nhiêu giây")
     p.add_argument("--mo-dau-ket-thuc", action="store_true", help="hiệu ứng mờ dần đầu/cuối")
@@ -194,6 +198,8 @@ def main():
     p.add_argument("--giu-srt", action="store_true", help="lưu file .srt cạnh video kết quả")
     args = p.parse_args()
 
+    if args.chu:
+        args.chu = Path(args.chu).resolve()
     src = Path(args.input).resolve()
     if not src.exists():
         sys.exit(f"Không thấy file: {src}")

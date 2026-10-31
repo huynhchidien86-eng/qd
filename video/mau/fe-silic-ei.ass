@@ -1,0 +1,30 @@
+[Script Info]
+; Chữ quảng cáo cho video FE SẮT SILIC EI 0.5MM 1KG (IMG_5312, dài ~32s, khung 1080x1920)
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Thương hiệu cố định góc trên
+Style: Brand,DejaVu Sans,38,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,14,0,8,40,40,70,1
+; Tiêu đề lớn: chữ vàng viền đen
+Style: Title,DejaVu Sans,86,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,5,60,60,0,1
+; Ý chính: chữ trắng trên nền đen mờ
+Style: Point,DejaVu Sans,58,&H00FFFFFF,&H00FFFFFF,&H90000000,&H90000000,1,0,0,0,100,100,0,0,3,22,0,2,70,70,330,1
+; Lời kêu gọi cuối
+Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:28.00,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
+
+Dialogue: 1,0:00:00.30,0:00:04.50,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}FE SẮT SILIC EI\N0.5MM – 1KG
+Dialogue: 1,0:00:04.50,0:00:09.00,Point,,0,0,0,,{\fad(250,250)}Lõi biến áp, biến áp cách ly,\Nbiến áp inverter, cuộn kháng
+Dialogue: 1,0:00:09.00,0:00:13.50,Point,,0,0,0,,{\fad(250,250)}Tôn silic mỏng 0.5mm\N{\c&H0000D7FF&}từ thẩm tốt – giảm hao nhiệt
+Dialogue: 1,0:00:13.50,0:00:18.00,Point,,0,0,0,,{\fad(250,250)}Cắt sẵn dạng chữ E – I\N{\c&H0000D7FF&}xếp lõi nhanh, quấn dễ
+Dialogue: 1,0:00:18.00,0:00:22.50,Point,,0,0,0,,{\fad(250,250)}Đủ size: 20 · 22 · 25 · 28 · 32\N36 · 40 · 45 · 50mm
+Dialogue: 1,0:00:22.50,0:00:27.50,Point,,0,0,0,,{\fad(250,250)}✔ Hàng mới 100%\N✔ Có sẵn số lượng lớn\N✔ Giao HỎA TỐC trong ngày
+Dialogue: 1,0:00:27.70,0:00:32.30,CTA,,0,0,0,,{\fad(300,0)}LINH KIỆN\NQUỲNH DIỄN\N{\fs52\c&H0000D7FF&}► ĐẶT HÀNG NGAY!
