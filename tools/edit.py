@@ -215,7 +215,12 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
         vchain.append(f"tpad=stop_mode=clone:stop_duration={total - video_len:.3f}")
         print(f"Giọng đọc dài hơn video: giữ khung cuối thêm {total - video_len:.1f}s")
 
-    if args.khung:
+    if args.khung and args.day_khung:
+        # Cắt đầy khung mới (không nền mờ), giữ phần giữa; hợp với video quay ngang độ phân giải cao.
+        _, out_w, out_h = frame_filter(args.khung, w, h)
+        vchain.append(f"scale={out_w}:{out_h}:force_original_aspect_ratio=increase,"
+                      f"crop={out_w}:{out_h}:(iw-{out_w})*{args.day_khung_x}:(ih-{out_h})/2")
+    elif args.khung:
         f, out_w, out_h = frame_filter(args.khung, w, h)
         vchain.append(f)
     for a, b_, z, cx, cy in args.zoom_list:
@@ -327,6 +332,8 @@ def main():
     p.add_argument("--nen-am-luong", default="0.25", help="âm lượng tiếng gốc khi có giọng đọc (0-1)")
     p.add_argument("--phu-de-cao", type=int, help="khoảng cách phụ đề tới đáy (thang 288, mặc định 24)")
     p.add_argument("--khung", help="tỉ lệ khung mới, vd 9:16, 16:9, 1:1")
+    p.add_argument("--day-khung", action="store_true", help="cắt đầy khung mới thay vì nền mờ hai bên")
+    p.add_argument("--day-khung-x", type=float, default=0.5, help="vị trí cắt ngang 0 (trái) – 1 (phải)")
     p.add_argument("--nhac", help="file nhạc nền")
     p.add_argument("--nhac-am-luong", default="0.15", help="âm lượng nhạc nền (0-1)")
     p.add_argument("--logo", help="file logo PNG, đặt góc trên bên phải")

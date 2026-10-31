@@ -128,6 +128,10 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   `1lzwhDqIbZ2mvtNnYZLoQRP_6_xvpFuCn`).
 - Ảnh ống gen có sẵn trên Drive: "Ống gen Amiang HD.jpg", "Ống gen Amiang 1..8 HD.jpg" (mỗi ảnh
   một thư mục riêng, chưa chia sẻ lúc 31/10).
+- **Thư mục video chính để "làm dần"**: `MAKETING/AFFILIATE HÀNG TOP/VIDEO Tiep thi` (đã chia sẻ).
+  Danh sách + mã Drive + trạng thái: `video/danh-sach-tiep-thi.md`. Làm xong video nào thì
+  đánh dấu ✅ ở đó. Video quay ngang 4K: dùng `--day-khung` (cắt đầy khung dọc).
+- Whisper hay "bịa" câu "subscribe cho kênh…" khi video không có lời: coi như không có lời nói.
 - Mẹo cho anh: chia sẻ cả thư mục VIDEO "Bất kỳ ai có đường liên kết" một lần là mọi file
   trong đó tải được.
 - **Video có người nói thật** (review, đo thử): giữ giọng thật, không chèn giọng đọc máy.
