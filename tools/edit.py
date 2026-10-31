@@ -56,6 +56,44 @@ def trim(src, dst, start, end):
                "-c:a", "aac", "-b:a", "192k", dst])
 
 
+def retime(src, dst, cuts, speeds):
+    """Bỏ các đoạn trong cuts [(a, b)], tua nhanh các đoạn trong speeds [(a, b, x)]. Giây gốc."""
+    total = duration(src)
+    marks = {0.0, total}
+    for a, b in cuts:
+        marks |= {a, b}
+    for a, b, _ in speeds:
+        marks |= {a, b}
+    points = sorted(m for m in marks if 0 <= m <= total)
+    graph, n = [], 0
+    for a, b in zip(points, points[1:]):
+        if b - a < 0.02 or any(ca <= a and b <= cb for ca, cb in cuts):
+            continue
+        x = next((sx for sa, sb, sx in speeds if sa <= a and b <= sb), 1.0)
+        tempo, chain = x, []
+        while tempo > 2.0:  # atempo tối đa 2 lần mỗi bước
+            chain.append("atempo=2.0")
+            tempo /= 2.0
+        chain.append(f"atempo={tempo:.4f}")
+        graph.append(f"[0:v]trim={a}:{b},setpts=(PTS-STARTPTS)/{x}[v{n}]")
+        graph.append(f"[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS,{','.join(chain)}[a{n}]")
+        n += 1
+    graph.append("".join(f"[v{i}][a{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=1[v][a]")
+    run(["ffmpeg", "-y", "-v", "error", "-i", src, "-filter_complex", ";".join(graph),
+         "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16",
+         "-c:a", "aac", "-b:a", "192k", dst])
+
+
+def parse_ranges(text, with_speed=False):
+    """'35-43.4x3,15.6-20.5x2' -> [(35, 43.4, 3), ...]; '0-1.6' -> [(0, 1.6)]."""
+    out = []
+    for item in filter(None, (text or "").split(",")):
+        rng, _, x = item.partition("x")
+        a, b = (float(v) for v in rng.split("-"))
+        out.append((a, b, float(x or 2)) if with_speed else (a, b))
+    return out
+
+
 def cut_silence(src, dst, threshold, margin):
     run(["auto-editor", src, "--edit", f"audio:threshold={threshold}",
          "--margin", margin, "--progress", "none", "--no-open", "-o", dst])
@@ -199,6 +237,9 @@ def main():
     p.add_argument("-o", "--output", help="file kết quả (mặc định video/xong/<tên>_edit.mp4)")
     p.add_argument("--tu", help="bắt đầu từ thời điểm, vd 00:00:05")
     p.add_argument("--den", help="kết thúc ở thời điểm, vd 00:03:20")
+    p.add_argument("--bo", help="bỏ các đoạn (giây gốc), vd 0-1.6,70-72")
+    p.add_argument("--tua", help="tua nhanh các đoạn (giây gốc), vd 35-43.4x3,15.6-20.5x2")
+    p.add_argument("--chi-dung", action="store_true", help="chỉ làm bước bỏ/tua rồi lưu, để soạn phụ đề")
     p.add_argument("--cat-lang", action="store_true", help="tự cắt khoảng lặng")
     p.add_argument("--nguong-lang", default="0.04", help="ngưỡng âm lượng coi là lặng (0-1)")
     p.add_argument("--le", default="0.2s", help="giữ lại bao nhiêu quanh chỗ có tiếng")
@@ -240,6 +281,10 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         cur = src
+        if args.bo or args.tua:
+            retime(cur, tmp / "0_retime.mp4", parse_ranges(args.bo), parse_ranges(args.tua, True))
+            cur = tmp / "0_retime.mp4"
+            print(f"Bỏ/tua: còn {duration(cur):.1f}s")
         if args.tu or args.den:
             trim(cur, tmp / "1_trim.mp4", args.tu, args.den)
             cur = tmp / "1_trim.mp4"
@@ -248,6 +293,10 @@ def main():
             cut_silence(cur, tmp / "2_cut.mp4", args.nguong_lang, args.le)
             cur = tmp / "2_cut.mp4"
             print(f"Cắt lặng: {before:.1f}s -> {duration(cur):.1f}s")
+        if args.chi_dung:
+            shutil.copy(cur, dst)
+            print(f"\nXong bước dựng: {dst} ({duration(dst):.1f}s)")
+            return
         srt = None
         voice, voice_end = None, 0.0
         if args.giong:

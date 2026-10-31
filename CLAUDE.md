@@ -121,4 +121,16 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Lời đọc phải vừa độ dài video. Câu cuối "Linh Kiện Quỳnh Diễn. Đặt hàng ngay!" neo bằng
   `@giây` trùng lúc khung CTA trong file `.ass` hiện ra.
 - Ổ cắm 6000W là hàng thương hiệu **SOPOKA** (đọc "Sô pô ca").
+- **Video có người nói thật** (review, đo thử): giữ giọng thật, không chèn giọng đọc máy.
+  Cách làm (mẫu `video/mau/tu-60uf.*`, video tụ 60uF Drive id `1q0GcPUEDSoqlOPzqQiPHntoJ5U4T8WqU`):
+  1. `--bo` bỏ tiếng thừa, `--tua` tua nhanh đoạn chờ (vd chờ đồng hồ đo), `--chi-dung` để
+     xem bản dựng.
+  2. Whisper (`medium`) lấy thời điểm câu nói, **sửa tay** chữ nghe sai vào file `.srt`
+     (60 OF → 60µF, tụ nhôn → tụ nhôm). Không thêm lời người nói không nói.
+  3. File `.ass` chỉ có chữ nổi bật phía trên (tiêu đề, thông số, kết quả đo, CTA trước outro).
+  4. Video của anh thường đã có logo QUYNDIEN trên tường và outro "Follow" ở cuối: không cần
+     hộp tên shop.
+- **Đổi nền (tách nền AI)**: đã thử `rembg` trên video cầm tay, kết quả hỏng (mất tay, sản
+  phẩm thành bóng mờ). Không làm; khuyên anh quay tại bàn thợ thật.
+- Nhạc nền: anh muốn có. Chờ anh gửi file nhạc miễn bản quyền, lưu vào `video/assets/`.
 - Kiểm tra giọng đọc: chạy Whisper nghe lại video (dùng `load_audio` trong `edit.py`).

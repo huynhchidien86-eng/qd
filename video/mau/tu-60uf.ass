@@ -1,0 +1,29 @@
+[Script Info]
+; Chữ nổi bật cho video review TỤ NHÔM CBB 60uF 450VAC EUN SUNG (bản đã bỏ/tua, ~70s).
+; Video có giọng nói thật: phụ đề ở tu-60uf.srt, chữ nổi bật đặt phía trên để không đè phụ đề.
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Tiêu đề lớn: chữ vàng viền đen
+Style: Title,DejaVu Sans,84,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,300,1
+; Thông số: chữ trắng hộp đen mờ, phía trên
+Style: Badge,DejaVu Sans,54,&H00FFFFFF,&H00FFFFFF,&H90000000,&H90000000,1,0,0,0,100,100,0,0,3,20,0,8,60,60,300,1
+; Kết quả đo: hộp xanh lá lớn
+Style: Result,DejaVu Sans,72,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,24,0,8,60,60,300,1
+; Lời kêu gọi cuối
+Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.20,0:00:03.00,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}TỤ NHÔM CBB\N60µF – 450VAC
+Dialogue: 1,0:00:06.50,0:00:14.00,Badge,,0,0,0,,{\fad(250,250)}Tụ ngậm motor 1 pha\N{\c&H0000D7FF&}Máy bơm · Máy lạnh · Điều hòa
+Dialogue: 1,0:00:16.60,0:00:24.40,Badge,,0,0,0,,{\fad(250,250)}60µF ±5% · 450VAC\N{\c&H0000D7FF&}50/60Hz · Vỏ nhôm
+Dialogue: 1,0:00:25.00,0:00:28.80,Badge,,0,0,0,,{\fad(250,250)}Thương hiệu EUN SUNG\N{\c&H0000D7FF&}Hàn Quốc
+Dialogue: 1,0:00:34.00,0:00:41.20,Result,,0,0,0,,{\fad(200,250)\t(0,250,\fscx115\fscy115)\t(250,450,\fscx100\fscy100)}ĐO THỰC TẾ: 60.21µF ✔\N{\fs50}Đủ dung lượng
+Dialogue: 1,0:00:45.50,0:00:53.00,Badge,,0,0,0,,{\fad(250,250)}Nạp thẳng 220V\N{\c&H0000D7FF&}Thử nạp – xả trực tiếp
+Dialogue: 1,0:00:59.20,0:01:03.80,CTA,,0,0,0,,{\fad(300,300)}LINH KIỆN\NQUỲNH DIỄN\N{\fs52\c&H0000D7FF&}► ĐẶT HÀNG NGAY!
