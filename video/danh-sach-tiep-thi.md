@@ -1,6 +1,6 @@
-# Danh sách video thư mục "VIDEO Tiep thi"
+# Danh sách video thư mục "VIDEO THÔ"
 
-Drive: `MAKETING/AFFILIATE HÀNG TOP/VIDEO Tiep thi`, folder id `1cET5QDy27HkU0bItdI22c_E3qFCjHe7F`
+Drive: `MAKETING/AFFILIATE HÀNG TOP/VIDEO THÔ` (trước tên "VIDEO Tiep thi"), folder id `1cET5QDy27HkU0bItdI22c_E3qFCjHe7F`
 (đã chia sẻ "Bất kỳ ai có đường liên kết" ngày 31/10). Tải một file:
 
 ```bash

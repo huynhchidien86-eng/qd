@@ -56,8 +56,9 @@ def trim(src, dst, start, end):
                "-c:a", "aac", "-b:a", "192k", dst])
 
 
-def retime(src, dst, cuts, speeds):
-    """Bỏ các đoạn trong cuts [(a, b)], tua nhanh các đoạn trong speeds [(a, b, x)]. Giây gốc."""
+def retime(src, dst, cuts, speeds, factor=1.0):
+    """Bỏ các đoạn trong cuts [(a, b)], tua nhanh các đoạn trong speeds [(a, b, x)]. Giây gốc.
+    factor: tăng tốc thêm toàn bộ video (giữ cao độ giọng)."""
     total = duration(src)
     marks = {0.0, total}
     for a, b in cuts:
@@ -65,11 +66,13 @@ def retime(src, dst, cuts, speeds):
     for a, b, _ in speeds:
         marks |= {a, b}
     points = sorted(m for m in marks if 0 <= m <= total)
-    graph, n = [], 0
+    graph, n, segs, out_t = [], 0, [], 0.0
     for a, b in zip(points, points[1:]):
         if b - a < 0.02 or any(ca <= a and b <= cb for ca, cb in cuts):
             continue
-        x = next((sx for sa, sb, sx in speeds if sa <= a and b <= sb), 1.0)
+        x = next((sx for sa, sb, sx in speeds if sa <= a and b <= sb), 1.0) * factor
+        segs.append((a, b, x, out_t))
+        out_t += (b - a) / x
         tempo, chain = x, []
         while tempo > 2.0:  # atempo tối đa 2 lần mỗi bước
             chain.append("atempo=2.0")
@@ -82,6 +85,68 @@ def retime(src, dst, cuts, speeds):
     run(["ffmpeg", "-y", "-v", "error", "-i", src, "-filter_complex", ";".join(graph),
          "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16",
          "-c:a", "aac", "-b:a", "192k", dst])
+    return Mapper(segs, total)
+
+
+class Mapper:
+    """Đổi giây của video gốc sang giây của video sau khi bỏ/tua. Giây rơi vào đoạn bị bỏ thì
+    lấy đầu đoạn kế tiếp; giây sau hết video gốc thì nối tiếp sau hết video mới."""
+
+    def __init__(self, segs=None, total=None):
+        self.segs, self.total = segs or [], total
+
+    def __call__(self, t):
+        if not self.segs:
+            return t
+        for a, b, x, o in self.segs:
+            if t < a:
+                return o
+            if t <= b:
+                return o + (t - a) / x
+        a, b, x, o = self.segs[-1]
+        return o + (b - a) / x + max(0.0, t - self.total)
+
+
+def _ass_time(t):
+    h, r = divmod(max(t, 0), 3600)
+    m, sec = divmod(r, 60)
+    return f"{int(h)}:{int(m):02}:{sec:05.2f}"
+
+
+def remap_subs(path, dst, mp):
+    """Dời thời gian trong file .srt / .ass theo mp (Mapper). Dòng bị cắt mất (dài 0) thì bỏ."""
+    import re
+    text = Path(path).read_text(encoding="utf-8")
+    if str(path).endswith(".srt"):
+        def conv(m):
+            def sec(x):
+                hh, mm, rest = x.split(":")
+                ss, ms = rest.split(",")
+                return int(hh) * 3600 + int(mm) * 60 + int(ss) + int(ms) / 1000
+            a, b = mp(sec(m.group(1))), mp(sec(m.group(2)))
+            if b - a < 0.05:
+                return "00:00:00,000 --> 00:00:00,000"
+            return f"{srt_time(a)} --> {srt_time(b)}"
+        text = re.sub(r"(\d+:\d+:\d+,\d+) --> (\d+:\d+:\d+,\d+)", conv, text)
+    else:
+        def conv(m):
+            def sec(x):
+                hh, mm, ss = x.split(":")
+                return int(hh) * 3600 + int(mm) * 60 + float(ss)
+            a, b = mp(sec(m.group(2))), mp(sec(m.group(3)))
+            return f"{m.group(1)}{_ass_time(a)},{_ass_time(max(b, a))},"
+        text = re.sub(r"^(Dialogue: \d+,)([\d:.]+),([\d:.]+),", conv, text, flags=re.M)
+    Path(dst).write_text(text, encoding="utf-8")
+    return Path(dst)
+
+
+def remap_script(path, dst, mp):
+    """Dời các mốc @giây trong file lời đọc theo mp."""
+    import re
+    text = Path(path).read_text(encoding="utf-8")
+    text = re.sub(r"^@([\d.]+)", lambda m: f"@{mp(float(m.group(1))):.2f}", text, flags=re.M)
+    Path(dst).write_text(text, encoding="utf-8")
+    return str(dst)
 
 
 SFX_DIR = Path(tempfile.gettempdir()) / "qd_sfx"
@@ -131,6 +196,33 @@ def concat(parts, dst, args):
     run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", graph, "-map", "[v]", "-map", "[a]",
          "-c:v", "libx264", "-preset", args.preset, "-crf", str(args.crf), "-pix_fmt", "yuv420p",
          "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", dst])
+
+
+FILLERS = {"ờ", "ơ", "ừ", "ừm", "ờm", "ưm", "ề", "ầy", "à", "á", "ạ", "hmm", "um", "uh", "ừa"}
+
+
+def find_filler_cuts(src, max_gap, keep, protect, model_name="medium"):
+    """Trả về các đoạn nên cắt (giây gốc): từ đệm (ờ, à, ừm…) và khoảng lặng giữa hai câu nói dài
+    hơn max_gap (giữ lại `keep` giây mỗi bên). Bỏ qua các đoạn trong protect (vd đoạn đã --tua)."""
+    from faster_whisper import WhisperModel
+    model = WhisperModel(model_name, device="cpu", compute_type="int8")
+    segs, _ = model.transcribe(load_audio(src), language="vi", vad_filter=True, word_timestamps=True)
+    words = [w for s in segs for w in (s.words or [])]
+    cuts = []
+    for w in words:
+        if w.word.strip(" ,.!?…").lower() in FILLERS:
+            cuts.append((w.start, w.end, f"từ đệm '{w.word.strip()}'"))
+    for a, b in zip(words, words[1:]):
+        if b.start - a.end > max_gap:
+            cuts.append((a.end + keep, b.start - keep, f"lặng {b.start - a.end:.1f}s"))
+    out = []
+    for s0, e0, why in sorted(cuts):
+        if e0 - s0 < 0.08 or any(pa < e0 and s0 < pb for pa, pb, *_ in protect):
+            continue
+        out.append((round(s0, 2), round(e0, 2)))
+        print(f"  cắt {s0:6.2f}–{e0:6.2f}  ({why})")
+    print(f"Cắt ngập ngừng: {len(out)} đoạn, bớt {sum(e - s for s, e in out):.1f}s")
+    return out
 
 
 def parse_ranges(text, with_speed=False):
@@ -202,8 +294,25 @@ def escape_filter_path(p):
     return str(p).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
 
+# Giọng khỏe, rõ, to hơn ~25%: nén đều tiếng, giảm ù trầm, tăng dải rõ chữ.
+VOICE_FX = ("acompressor=threshold=-22dB:ratio=3:attack=5:release=60:makeup=2,"
+            "equalizer=f=180:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=3,volume=1.25")
+
+STUDIO = ("hqdn3d=2.5:2:4:3,"                                   # khử nhiễu, da/bề mặt mịn hơn
+          "eq=brightness=0.035:contrast=1.07:saturation=1.10:gamma=1.06,"  # sáng, trong, tươi
+          "colorbalance=rs=0.02:bs=-0.02:rh=0.015:bh=-0.01,"        # ấm nhẹ như đèn studio
+          "unsharp=5:5:0.45:5:5:0")                                # nét nhẹ sau khi khử nhiễu
+
+
 def frame_chain(args, w, h):
-    """Bộ lọc đưa video về khung mới. Trả về (bộ lọc hoặc None, rộng, cao)."""
+    """Bộ lọc đưa video về khung mới (+ chỉnh ánh sáng studio nếu bật). Trả về (bộ lọc|None, rộng, cao)."""
+    f, out_w, out_h = _frame_only(args, w, h)
+    if getattr(args, "studio", False):
+        f = f"{f},{STUDIO}" if f else STUDIO
+    return f, out_w, out_h
+
+
+def _frame_only(args, w, h):
     if args.khung and args.day_khung:
         # Cắt đầy khung mới (không nền mờ), giữ phần giữa; hợp với video quay ngang độ phân giải cao.
         _, out_w, out_h = frame_filter(args.khung, w, h)
@@ -219,6 +328,8 @@ def make_hook_cut(src, args, ass, dst, tmp):
     chữ to từ file ASS. Cảnh lấy tại các mốc --mo-dau-canh (giây trong video sau bỏ/tua)."""
     from giong_doc import make_voice
     times = [float(t) for t in args.mo_dau_canh.split(",")]
+    if args.nhanh != 1:  # chữ mở đầu soạn theo tốc độ giọng cũ: dời theo cùng tỉ lệ
+        ass = remap_subs(ass, tmp / "hook.ass", lambda t: t / args.nhanh)
     voice_end = 0.0
     if args.mo_dau_giong:
         hv, _, voice_end = make_voice(args.mo_dau_giong, tmp / "hookvoice", args.giong_engine,
@@ -247,7 +358,7 @@ def make_hook_cut(src, args, ass, dst, tmp):
         mix.append(f"[s{i}]")
     if args.mo_dau_giong:
         inputs += ["-i", hv]
-        graph.append(f"[{len(hits) + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo[hv]")
+        graph.append(f"[{len(hits) + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,{VOICE_FX}[hv]")
         mix.append("[hv]")
     graph.append(f"anullsrc=r=48000:cl=stereo,atrim=duration={total:.3f}[sil]")
     graph.append(f"[sil]{''.join(mix)}amix=inputs={len(mix) + 1}:duration=first:normalize=0,"
@@ -322,8 +433,11 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
     if voice:
         # Tiếng gốc nhỏ lại làm nền cho giọng đọc.
         inputs += ["-i", voice]
-        graph.append(f"[0:a]volume={args.nen_am_luong},apad[orig]")
-        graph.append(f"[orig][{idx}:a]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[av]")
+        # Video có người nói thật (--srt) thì giữ nguyên giọng gốc; còn lại tiếng gốc nhỏ làm nền.
+        orig_fx = VOICE_FX if args.srt else f"volume={args.nen_am_luong}"
+        graph.append(f"[0:a]{orig_fx},apad[orig]")
+        graph.append(f"[{idx}:a]{VOICE_FX}[vfx]")
+        graph.append(f"[orig][vfx]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[av]")
         alast = "av"
         idx += 1
     if args.nhac:
@@ -366,6 +480,12 @@ def main():
     p.add_argument("--bo", help="bỏ các đoạn (giây gốc), vd 0-1.6,70-72")
     p.add_argument("--tua", help="tua nhanh các đoạn (giây gốc), vd 35-43.4x3,15.6-20.5x2")
     p.add_argument("--chi-dung", action="store_true", help="chỉ làm bước bỏ/tua rồi lưu, để soạn phụ đề")
+    p.add_argument("--cat-ngap", action="store_true",
+                   help="video có người nói: cắt từ đệm (ờ, à, ừm…) và khoảng lặng dài giữa các câu")
+    p.add_argument("--ngap-toi-da", type=float, default=1.0, help="khoảng lặng dài hơn mức này (giây) thì cắt bớt")
+    p.add_argument("--goc", action="store_true",
+                   help="mốc thời gian trong .srt/.ass/zoom/sfx/@lời đọc tính theo video đầu vào; tự dời khi bỏ/tua/cắt")
+    p.add_argument("--studio", action="store_true", help="chỉnh ánh sáng sáng mịn kiểu studio")
     p.add_argument("--cat-lang", action="store_true", help="tự cắt khoảng lặng")
     p.add_argument("--nguong-lang", default="0.04", help="ngưỡng âm lượng coi là lặng (0-1)")
     p.add_argument("--le", default="0.2s", help="giữ lại bao nhiêu quanh chỗ có tiếng")
@@ -378,8 +498,10 @@ def main():
                    help="edge = giọng Microsoft (cần mạng), espeak = giọng máy để chạy thử")
     p.add_argument("--giong-doc", default="vi-VN-HoaiMyNeural",
                    help="vi-VN-HoaiMyNeural (nữ) hoặc vi-VN-NamMinhNeural (nam)")
-    p.add_argument("--toc-do", default="+25%", help="tốc độ đọc, vd +25%% hoặc -5%%")
-    p.add_argument("--cao-giong", default="+4Hz", help="độ cao giọng, vd +4Hz cho giọng tươi hơn")
+    p.add_argument("--toc-do", default="+50%", help="tốc độ đọc, vd +50%% hoặc +25%%")
+    p.add_argument("--cao-giong", default="+6Hz", help="độ cao giọng, vd +6Hz cho giọng tươi hơn")
+    p.add_argument("--nhanh", type=float, default=1.0,
+                   help="tăng tốc cả video (giữ cao độ giọng), vd 1.2; dùng với --goc để chữ/phụ đề tự dời")
     p.add_argument("--nen-am-luong", default="0.25", help="âm lượng tiếng gốc khi có giọng đọc (0-1)")
     p.add_argument("--phu-de-cao", type=int, help="khoảng cách phụ đề tới đáy (thang 288, mặc định 24)")
     p.add_argument("--khung", help="tỉ lệ khung mới, vd 9:16, 16:9, 1:1")
@@ -426,10 +548,29 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         cur = src
-        if args.bo or args.tua:
-            retime(cur, tmp / "0_retime.mp4", parse_ranges(args.bo), parse_ranges(args.tua, True))
+        cuts, speeds = parse_ranges(args.bo), parse_ranges(args.tua, True)
+        if args.cat_ngap:
+            keep = speeds + [(a_, b_, 1) for a_, b_, *_ in args.zoom_list]  # không cắt đoạn tua/zoom
+            cuts += find_filler_cuts(cur, args.ngap_toi_da, 0.15, keep)
+        mp = Mapper()
+        if cuts or speeds or args.nhanh != 1:
+            mp = retime(cur, tmp / "0_retime.mp4", cuts, speeds, args.nhanh)
             cur = tmp / "0_retime.mp4"
             print(f"Bỏ/tua: còn {duration(cur):.1f}s")
+        if args.goc:
+            # Mọi mốc thời gian (phụ đề, chữ, zoom, chớp, tiếng, cảnh mở đầu, @ lời đọc) tính theo
+            # video đầu vào; dời sang video sau khi bỏ/tua.
+            if args.chu:
+                args.chu = remap_subs(args.chu, tmp / "chu.ass", mp)
+            if args.srt:
+                args.srt = str(remap_subs(args.srt, tmp / "goc.srt", mp))
+            if args.giong:
+                args.giong = remap_script(args.giong, tmp / "giong.txt", mp)
+            args.zoom_list = [(mp(a), mp(b), z, cx, cy) for a, b, z, cx, cy in args.zoom_list]
+            args.flash_list = [mp(t) for t in args.flash_list]
+            args.sfx_list = [(mp(t), k) for t, k in args.sfx_list]
+            if args.mo_dau_canh:
+                args.mo_dau_canh = ",".join(f"{mp(float(t)):.2f}" for t in args.mo_dau_canh.split(","))
         if args.tu or args.den:
             trim(cur, tmp / "1_trim.mp4", args.tu, args.den)
             cur = tmp / "1_trim.mp4"
@@ -448,6 +589,9 @@ def main():
             from giong_doc import make_voice
             voice, srt, voice_end = make_voice(args.giong, tmp, args.giong_engine,
                                                args.giong_doc, args.toc_do, args.cao_giong)
+            if args.srt:  # video có người nói: phụ đề theo lời thật, giọng đọc chỉ thêm câu kết…
+                srt = tmp / "subs.srt"
+                shutil.copy(args.srt, srt)
         elif args.srt:
             srt = tmp / "subs.srt"
             shutil.copy(args.srt, srt)

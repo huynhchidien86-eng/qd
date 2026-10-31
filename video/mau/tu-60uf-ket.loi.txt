@@ -1,0 +1,2 @@
+# Câu kết nhẹ nhàng (chỉ đọc, không phụ đề) cho video tụ 60uF; mốc theo bản dựng (dùng với --goc).
+@60.3 | Cần thay tụ motor chuẩn, anh em ghé Linh Kiện Quỳnh Diễn nhé.
