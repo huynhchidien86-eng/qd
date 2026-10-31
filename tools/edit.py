@@ -69,6 +69,14 @@ def srt_time(t):
     return f"{h:02}:{m:02}:{s:02},{ms:03}"
 
 
+def load_audio(path):
+    """Đọc âm thanh bằng ffmpeg (16kHz mono) cho Whisper, tránh lệ thuộc phiên bản PyAV."""
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-vn", "-ac", "1", "-ar", "16000",
+                          "-f", "f32le", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.float32)
+
+
 def transcribe(src, srt_path, model_name, lang):
     try:
         from faster_whisper import WhisperModel
@@ -76,7 +84,7 @@ def transcribe(src, srt_path, model_name, lang):
         sys.exit("Thiếu faster-whisper. Chạy: bash tools/setup.sh")
     print(f"Đang nhận dạng giọng nói (model {model_name})...", flush=True)
     model = WhisperModel(model_name, device="cpu", compute_type="int8")
-    segments, _ = model.transcribe(str(src), language=lang, vad_filter=True)
+    segments, _ = model.transcribe(load_audio(src), language=lang, vad_filter=True)
     lines = []
     for i, seg in enumerate(segments, 1):
         lines.append(f"{i}\n{srt_time(seg.start)} --> {srt_time(seg.end)}\n{seg.text.strip()}\n")
