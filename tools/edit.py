@@ -84,6 +84,55 @@ def retime(src, dst, cuts, speeds):
          "-c:a", "aac", "-b:a", "192k", dst])
 
 
+SFX_DIR = Path(tempfile.gettempdir()) / "qd_sfx"
+
+
+def sfx_file(kind):
+    """Tạo (một lần) tiếng hiệu ứng bằng ffmpeg: whoosh (vút), ding, pop."""
+    SFX_DIR.mkdir(exist_ok=True)
+    out = SFX_DIR / f"{kind}.wav"
+    if not out.exists():
+        src = {
+            "whoosh": ("anoisesrc=d=0.45:c=pink:a=0.6",
+                       "highpass=f=600,lowpass=f=5000,afade=t=in:d=0.2,afade=t=out:st=0.2:d=0.25,volume=0.7"),
+            "ding": ("sine=f=1568:d=0.9",
+                     "volume='exp(-5*t)':eval=frame,aecho=0.6:0.4:60:0.3,volume=0.6"),
+            "pop": ("sine=f=700:d=0.12", "afade=t=out:d=0.12,volume=0.6"),
+        }[kind]
+        run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", src[0], "-af", src[1],
+             "-ar", "48000", "-ac", "2", out])
+    return out
+
+
+def make_hook(main, ass, seconds, dst):
+    """Đoạn mở đầu: khung hình đầu làm mờ + tối, chữ tình huống từ file ASS, tiếng vút."""
+    w, h = video_size(main)
+    # Tiếng: vút lúc mở, pop cho câu thứ 2, 3, vút lúc chốt (khớp mẫu *-mo-dau.ass).
+    hits = [(0.0, "whoosh"), (0.7, "pop"), (1.4, "pop"), (2.2, "whoosh")]
+    sfx_in = [x for _, k in hits for x in ("-i", sfx_file(k))]
+    sfx_graph = "".join(f"[{i + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
+                        f"adelay={int(t * 1000)}|{int(t * 1000)}[s{i}];" for i, (t, _) in enumerate(hits))
+    sfx_mix = "".join(f"[s{i}]" for i in range(len(hits)))
+    run(["ffmpeg", "-y", "-v", "error", "-i", main, *sfx_in, "-filter_complex",
+         f"[0:v]trim=end_frame=1,loop=loop=-1:size=1,trim=duration={seconds},setpts=N/30/TB,"
+         f"fps=30,scale={w}:{h},boxblur=25:3,eq=brightness=-0.25,"
+         f"subtitles='{escape_filter_path(ass)}',format=yuv420p[v];"
+         f"anullsrc=r=48000:cl=stereo,atrim=duration={seconds}[sil];{sfx_graph}"
+         f"[sil]{sfx_mix}amix=inputs={len(hits) + 1}:duration=first:normalize=0[a]",
+         "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+         "-c:a", "aac", "-b:a", "192k", dst])
+
+
+def concat(parts, dst, args):
+    graph = "".join(f"[{i}:v]fps=30,setsar=1[v{i}];[{i}:a]aformat=sample_rates=48000:"
+                    f"channel_layouts=stereo[a{i}];" for i in range(len(parts)))
+    graph += "".join(f"[v{i}][a{i}]" for i in range(len(parts))) + f"concat=n={len(parts)}:v=1:a=1[v][a]"
+    inputs = [x for p in parts for x in ("-i", p)]
+    run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", graph, "-map", "[v]", "-map", "[a]",
+         "-c:v", "libx264", "-preset", args.preset, "-crf", str(args.crf), "-pix_fmt", "yuv420p",
+         "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", dst])
+
+
 def parse_ranges(text, with_speed=False):
     """'35-43.4x3,15.6-20.5x2' -> [(35, 43.4, 3), ...]; '0-1.6' -> [(0, 1.6)]."""
     out = []
@@ -169,6 +218,15 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
     if args.khung:
         f, out_w, out_h = frame_filter(args.khung, w, h)
         vchain.append(f)
+    for a, b_, z, cx, cy in args.zoom_list:
+        # Phóng to mượt (0.4s vào, 0.4s ra) quanh điểm (cx, cy) tính theo tỉ lệ khung.
+        k = f"clip(min((it-{a})/0.4,({b_}-it)/0.4),0,1)"  # it = thời điểm khung vào
+        zf = f"(1+{z - 1:.3f}*{k})"
+        vchain.append(f"zoompan=z='{zf}':d=1:fps=30:s={out_w}x{out_h}"
+                      f":x='min(max(iw*{cx}-iw/zoom/2,0),iw-iw/zoom)'"
+                      f":y='min(max(ih*{cy}-ih/zoom/2,0),ih-ih/zoom)'")
+    for t in args.flash_list:
+        vchain.append(f"drawbox=color=white@0.55:t=fill:enable='between(t,{t},{t + 0.12})'")
     if srt:
         # libass tính cỡ chữ theo khung chuẩn cao 288, không theo pixel thật.
         size = 11 if out_h > out_w else 18
@@ -219,6 +277,18 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
         graph.append(f"[{alast}][bgm]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[a1]")
         alast = "a1"
         idx += 1
+    if args.sfx_list:
+        labels = []
+        for i, (t, kind) in enumerate(args.sfx_list):
+            inputs += ["-i", sfx_file(kind)]
+            ms = int(t * 1000)
+            graph.append(f"[{idx}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
+                         f"adelay={ms}|{ms}[sfx{i}]")
+            labels.append(f"[sfx{i}]")
+            idx += 1
+        graph.append(f"[{alast}]{''.join(labels)}amix=inputs={len(labels) + 1}:duration=first:"
+                     f"dropout_transition=0:normalize=0[asfx]")
+        alast = "asfx"
     if args.chuan_am:
         graph.append(f"[{alast}]loudnorm=I=-14:TP=-1.5:LRA=11[a2]")
         alast = "a2"
@@ -265,6 +335,11 @@ def main():
     p.add_argument("--tieu-de-giay", type=float, default=3.0, help="tiêu đề hiện bao nhiêu giây")
     p.add_argument("--mo-dau-ket-thuc", action="store_true", help="hiệu ứng mờ dần đầu/cuối")
     p.add_argument("--chuan-am", action="store_true", help="chuẩn hoá âm lượng kiểu YouTube/TikTok")
+    p.add_argument("--zoom", help="phóng to: 'bắt đầu-kết thúc x mức @ tâm x,y', vd 34-38x1.8@0.56,0.45;...")
+    p.add_argument("--chop", help="chớp sáng tại các giây, vd 34.1,45.5")
+    p.add_argument("--sfx", help="tiếng hiệu ứng 'giây:loại', loại = whoosh|ding|pop, vd 0.2:whoosh,34.1:ding")
+    p.add_argument("--mo-dau", help="file .ass cho đoạn mở đầu tình huống (thời gian tính từ 0)")
+    p.add_argument("--mo-dau-giay", type=float, default=3.5, help="độ dài đoạn mở đầu")
     p.add_argument("--crf", type=int, default=20, help="chất lượng (thấp = đẹp hơn, nặng hơn)")
     p.add_argument("--preset", default="medium", help="tốc độ nén x264")
     p.add_argument("--giu-srt", action="store_true", help="lưu file .srt cạnh video kết quả")
@@ -272,6 +347,16 @@ def main():
 
     if args.chu:
         args.chu = Path(args.chu).resolve()
+    args.zoom_list = []
+    for item in filter(None, (args.zoom or "").split(";")):
+        rng, _, rest = item.partition("x")
+        z, _, center = rest.partition("@")
+        cx, cy = (float(v) for v in (center or "0.5,0.5").split(","))
+        a, b = (float(v) for v in rng.split("-"))
+        args.zoom_list.append((a, b, float(z), cx, cy))
+    args.flash_list = [float(t) for t in filter(None, (args.chop or "").split(","))]
+    args.sfx_list = [(float(t), k) for t, k in
+                     (i.split(":") for i in filter(None, (args.sfx or "").split(",")))]
     src = Path(args.input).resolve()
     if not src.exists():
         sys.exit(f"Không thấy file: {src}")
@@ -309,7 +394,13 @@ def main():
         elif args.phu_de:
             srt = tmp / "subs.srt"
             transcribe(cur, srt, args.model, args.ngon_ngu)
-        render(cur, dst, args, srt, voice, voice_end)
+        if args.mo_dau:
+            body = tmp / "body.mp4"
+            render(cur, body, args, srt, voice, voice_end)
+            make_hook(body, Path(args.mo_dau).resolve(), args.mo_dau_giay, tmp / "hook.mp4")
+            concat([tmp / "hook.mp4", body], dst, args)
+        else:
+            render(cur, dst, args, srt, voice, voice_end)
         if srt and args.giu_srt:
             shutil.copy(srt, dst.with_suffix(".srt"))
 

@@ -132,5 +132,14 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
      hộp tên shop.
 - **Đổi nền (tách nền AI)**: đã thử `rembg` trên video cầm tay, kết quả hỏng (mất tay, sản
   phẩm thành bóng mờ). Không làm; khuyên anh quay tại bàn thợ thật.
+- **Hiệu ứng** (anh thích có): `--mo-dau file.ass` đoạn mở đầu "tình huống" 3.5s trước
+  video (khung đầu làm mờ + câu hỏi triệu chứng + chốt "CÓ THỂ DO …", mẫu
+  `video/mau/tu-60uf-mo-dau.ass`; tiếng vút/pop đã khớp mốc 0 / 0.7 / 1.4 / 2.2s);
+  `--zoom "a-bxZ@cx,cy"` phóng to mượt (dùng zoompan; tìm tâm bằng khung hình có lưới,
+  đừng zoom đoạn video gốc đã quay cận); `--chop t` chớp sáng; `--sfx "t:whoosh|ding|pop"`.
+  Thường: pop khi hộp chữ hiện, ding + chớp khi ra kết quả đo, whoosh lúc mở/CTA.
+  Lệnh mẫu video tụ: xem lịch sử commit "hiệu ứng" hoặc dùng lại các mốc trong `tu-60uf.ass`.
+- **Tình huống minh họa bằng hình thật** (máy bơm, máy lạnh hỏng…): em không tự tạo được
+  video thật. Cần anh quay thêm clip 3–5s ở xưởng, hoặc mở mạng tới kho video miễn phí.
 - Nhạc nền: anh muốn có. Chờ anh gửi file nhạc miễn bản quyền, lưu vào `video/assets/`.
 - Kiểm tra giọng đọc: chạy Whisper nghe lại video (dùng `load_audio` trong `edit.py`).
