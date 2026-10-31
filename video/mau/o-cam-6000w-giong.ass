@@ -17,7 +17,7 @@ Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,10
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:19.50,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
+Dialogue: 0,0:00:00.00,0:00:21.00,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
 
-Dialogue: 1,0:00:00.30,0:00:04.00,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}Ổ CẮM SIÊU TẢI\N6000W – 30A
-Dialogue: 1,0:00:19.50,0:00:24.20,CTA,,0,0,0,,{\fad(300,0)}LINH KIỆN\NQUỲNH DIỄN\N{\fs52\c&H0000D7FF&}► ĐẶT HÀNG NGAY!
+Dialogue: 1,0:00:00.30,0:00:04.00,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}Ổ CẮM SOPOKA\NSIÊU TẢI 6000W – 30A
+Dialogue: 1,0:00:21.00,0:00:25.00,CTA,,0,0,0,,{\fad(300,0)}LINH KIỆN\NQUỲNH DIỄN\N{\fs52\c&H0000D7FF&}► ĐẶT HÀNG NGAY!

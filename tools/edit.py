@@ -211,7 +211,8 @@ def main():
                    help="edge = giọng Microsoft (cần mạng), espeak = giọng máy để chạy thử")
     p.add_argument("--giong-doc", default="vi-VN-HoaiMyNeural",
                    help="vi-VN-HoaiMyNeural (nữ) hoặc vi-VN-NamMinhNeural (nam)")
-    p.add_argument("--toc-do", default="+0%", help="tốc độ đọc, vd +10%% hoặc -5%%")
+    p.add_argument("--toc-do", default="+25%", help="tốc độ đọc, vd +25%% hoặc -5%%")
+    p.add_argument("--cao-giong", default="+4Hz", help="độ cao giọng, vd +4Hz cho giọng tươi hơn")
     p.add_argument("--nen-am-luong", default="0.25", help="âm lượng tiếng gốc khi có giọng đọc (0-1)")
     p.add_argument("--phu-de-cao", type=int, help="khoảng cách phụ đề tới đáy (thang 288, mặc định 24)")
     p.add_argument("--khung", help="tỉ lệ khung mới, vd 9:16, 16:9, 1:1")
@@ -252,7 +253,7 @@ def main():
         if args.giong:
             from giong_doc import make_voice
             voice, srt, voice_end = make_voice(args.giong, tmp, args.giong_engine,
-                                               args.giong_doc, args.toc_do)
+                                               args.giong_doc, args.toc_do, args.cao_giong)
         elif args.srt:
             srt = tmp / "subs.srt"
             shutil.copy(args.srt, srt)

@@ -39,7 +39,7 @@ def parse_script(path):
     return lines
 
 
-def tts_edge(text, out, voice, rate):
+def tts_edge(text, out, voice, rate, pitch="+0Hz"):
     import edge_tts
     from edge_tts import communicate
 
@@ -48,7 +48,7 @@ def tts_edge(text, out, voice, rate):
     if cafile and Path(cafile).exists():
         communicate._SSL_CTX.load_verify_locations(cafile)
     proxy = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
-    asyncio.run(edge_tts.Communicate(text, voice, rate=rate, proxy=proxy).save(str(out)))
+    asyncio.run(edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, proxy=proxy).save(str(out)))
 
 
 def tts_espeak(text, out, rate):
@@ -89,7 +89,7 @@ def split_chunks(text):
     return [" ".join(c) for c in chunks]
 
 
-def make_voice(script, tmp, engine="edge", voice="vi-VN-HoaiMyNeural", rate="+0%"):
+def make_voice(script, tmp, engine="edge", voice="vi-VN-HoaiMyNeural", rate="+0%", pitch="+0Hz"):
     """Tạo giọng đọc. Trả về (file wav giọng đọc, file srt, thời lượng)."""
     tmp = Path(tmp)
     lines = parse_script(script)
@@ -98,7 +98,7 @@ def make_voice(script, tmp, engine="edge", voice="vi-VN-HoaiMyNeural", rate="+0%
     for i, line in enumerate(lines):
         clip = tmp / f"voice_{i}.{'mp3' if engine == 'edge' else 'wav'}"
         if engine == "edge":
-            tts_edge(line["spoken"], clip, voice, rate)
+            tts_edge(line["spoken"], clip, voice, rate, pitch)
         else:
             tts_espeak(line["spoken"], clip, rate)
         length = audio_len(clip)
