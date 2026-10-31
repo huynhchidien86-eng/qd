@@ -225,6 +225,20 @@ def find_filler_cuts(src, max_gap, keep, protect, model_name="medium"):
     return out
 
 
+def add_music(src, music, vol, dst):
+    """Ghép nhạc nền cho cả video: nhạc lặp, vào/ra mượt, tự nhỏ xuống khi có giọng (ducking)."""
+    total = duration(src)
+    graph = (f"[1:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={vol},"
+             f"afade=t=in:d=0.8,afade=t=out:st={max(0, total - 2.5):.2f}:d=2.5[m];"
+             f"[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit[main][key];"
+             f"[m][key]sidechaincompress=threshold=0.02:ratio=5:attack=30:release=400[md];"
+             f"[main][md]amix=inputs=2:duration=first:dropout_transition=0:normalize=0,"
+             f"alimiter=limit=0.95[a]")
+    run(["ffmpeg", "-y", "-v", "error", "-i", src, "-stream_loop", "-1", "-i", music,
+         "-filter_complex", graph, "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+         "-c:a", "aac", "-b:a", "192k", "-t", f"{total:.3f}", "-movflags", "+faststart", dst])
+
+
 def parse_ranges(text, with_speed=False):
     """'35-43.4x3,15.6-20.5x2' -> [(35, 43.4, 3), ...]; '0-1.6' -> [(0, 1.6)]."""
     out = []
@@ -440,13 +454,6 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
         graph.append(f"[orig][vfx]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[av]")
         alast = "av"
         idx += 1
-    if args.nhac:
-        inputs += ["-stream_loop", "-1", "-i", args.nhac]
-        graph.append(f"[{idx}:a]volume={args.nhac_am_luong},"
-                     f"afade=t=out:st={max(0, total - 2)}:d=2[bgm]")
-        graph.append(f"[{alast}][bgm]amix=inputs=2:duration=first:dropout_transition=0:normalize=0[a1]")
-        alast = "a1"
-        idx += 1
     if args.sfx_list:
         labels = []
         for i, (t, kind) in enumerate(args.sfx_list):
@@ -508,7 +515,7 @@ def main():
     p.add_argument("--day-khung", action="store_true", help="cắt đầy khung mới thay vì nền mờ hai bên")
     p.add_argument("--day-khung-x", type=float, default=0.5, help="vị trí cắt ngang 0 (trái) – 1 (phải)")
     p.add_argument("--nhac", help="file nhạc nền")
-    p.add_argument("--nhac-am-luong", default="0.15", help="âm lượng nhạc nền (0-1)")
+    p.add_argument("--nhac-am-luong", default="0.12", help="âm lượng nhạc nền (0-1), tự nhỏ thêm khi có giọng")
     p.add_argument("--logo", help="file logo PNG, đặt góc trên bên phải")
     p.add_argument("--chu", help="file .ass chứa các đoạn chữ hiện theo thời gian (xem video/mau/)")
     p.add_argument("--tieu-de", help="chữ tiêu đề hiện ở đầu video")
@@ -611,6 +618,10 @@ def main():
             render(cur, dst, args, srt, voice, voice_end)
         if srt and args.giu_srt:
             shutil.copy(srt, dst.with_suffix(".srt"))
+        if args.nhac:
+            nomusic = tmp / "khong-nhac.mp4"
+            shutil.move(dst, nomusic)
+            add_music(nomusic, args.nhac, args.nhac_am_luong, dst)
 
     print(f"\nXong: {dst} ({duration(dst):.1f}s, {dst.stat().st_size / 1e6:.1f} MB)")
 

@@ -190,9 +190,19 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   thành "Quang chi"). Kiểm tra cách đọc lạ: tạo vài cách viết, cho Whisper nghe lại, chọn cái đúng.
 - **Tình huống minh họa bằng hình thật** (máy bơm, máy lạnh hỏng…): em không tự tạo được
   video thật. Cần anh quay thêm clip 3–5s ở xưởng, hoặc mở mạng tới kho video miễn phí.
-- **Nhạc nền**: anh bỏ file nhạc (miễn bản quyền) vào Drive `MAKETING/AFFILIATE HÀNG TOP/NHẠC NỀN (Claude)`
+- **Nhạc nền** (luôn ghép): anh bỏ file nhạc (miễn bản quyền) vào Drive `MAKETING/AFFILIATE HÀNG TOP/NHẠC NỀN (Claude)`
   (folder id `1ZKZViats-94aZGUR2FLOmVSgqL2d7RxW`; cần chia sẻ "Bất kỳ ai có đường liên kết").
-  Em liệt kê bằng Drive connector (`parentId = '<id>'`), tải bằng curl vào `video/assets/nhac/`
-  (không đưa nhạc lên git). Dùng `--nhac file --nhac-am-luong 0.12`; video có giọng đọc/người nói
-  để nhạc nhỏ (0.08–0.12) cho không lấn giọng.
+  Đã chia sẻ (31/10), 13 bài Pixabay. Tải bằng curl vào `video/assets/nhac/` (không đưa lên git).
+  `--nhac file --nhac-am-luong X`: nhạc ghép ở bước cuối cho **cả video kể cả mở đầu**, tự nhỏ khi có
+  giọng (sidechain ducking). Ghép nhạc cho video đã dựng: `add_music()` trong `edit.py`.
+  Âm lượng: đo `mean_volume` của bài (volumedetect 60s đầu), X = 10^((đích − mean)/20), đích −30 dB
+  (video giọng đọc) / −33 dB (video người nói thật).
+  Đã chọn: 01 Fe silic = vlog-beat, 02 Ổ cắm = pop-rock-quang-cao, 03 Tụ = promotion,
+  04 Ống gen = running-night, 05 Hộp WANCHI = moodmode. Bài có trong thư mục (id Drive):
+  vlog-beat `1tdjFEXZYxx_ytFzU6VXiT7YvBU5NMsbd`, pop-rock-commercial `1O8CveRqADT48_J-jLdtI_8HQkvCfE6Uh`,
+  music-promotion `1kszHdV-8UeE8VQShN-444c80hgQVImwC`, moodmode `1HX5ANIwxm3iQs1GW3juAFZ2MYs8bNixF`,
+  running-night `171R-OO--RY-vJ4fFWFvn8H3QXYWITPpI`, inspiring-acoustic `1st6Tv1u5j7qtszhSVI_-etteW2LKSN1f`,
+  cinematic-trailer-intro `16ysWCevhU0tbwfeL10Xi674cm09YTnxI`, cinematic `1sUFXWGWFsK0FB0abDvnVBk-vCjNTuav2`,
+  perfect-beauty `1n8JmbNnNFqbbDKuJ5P-PH3OT124M7arg`, moment-of-peace `1xuyFMbaw01eLY_xCH9W-ks4TcOL6kLj_`,
+  latin-salsa `18qkxq83uJBeAk3qQjwhcdYTy5abObHgP`, halloween-spooky (không hợp) `1Bcbt2azcDct-sp9HA2mPao2LAAymIHks`.
 - Kiểm tra giọng đọc: chạy Whisper nghe lại video (dùng `load_audio` trong `edit.py`).
