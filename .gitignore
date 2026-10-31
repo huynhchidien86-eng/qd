@@ -1,0 +1,10 @@
+# Video nặng, không đưa lên git
+video/tho/*
+video/xong/*
+!video/tho/.gitkeep
+!video/xong/.gitkeep
+*.mp4
+*.mov
+*.mkv
+*.srt
+__pycache__/
