@@ -121,6 +121,11 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Lời đọc phải vừa độ dài video. Câu cuối "Linh Kiện Quỳnh Diễn. Đặt hàng ngay!" neo bằng
   `@giây` trùng lúc khung CTA trong file `.ass` hiện ra.
 - Ổ cắm 6000W là hàng thương hiệu **SOPOKA** (đọc "Sô pô ca").
+- Ống gen sợi thủy tinh: anh đồng ý **không dùng chữ "amiang"** (amiang = asbestos, chất
+  độc) trong video; kích thước ghi Ø2–10mm. Mẫu `video/mau/ong-gen*` (Drive id
+  `1lzwhDqIbZ2mvtNnYZLoQRP_6_xvpFuCn`).
+- Mẹo cho anh: chia sẻ cả thư mục VIDEO "Bất kỳ ai có đường liên kết" một lần là mọi file
+  trong đó tải được.
 - **Video có người nói thật** (review, đo thử): giữ giọng thật, không chèn giọng đọc máy.
   Cách làm (mẫu `video/mau/tu-60uf.*`, video tụ 60uF Drive id `1q0GcPUEDSoqlOPzqQiPHntoJ5U4T8WqU`):
   1. `--bo` bỏ tiếng thừa, `--tua` tua nhanh đoạn chờ (vd chờ đồng hồ đo), `--chi-dung` để

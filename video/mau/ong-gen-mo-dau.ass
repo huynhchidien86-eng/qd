@@ -1,0 +1,19 @@
+[Script Info]
+; Đoạn mở đầu "tình huống" 3.5s cho video ống gen sợi thủy tinh.
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Q,DejaVu Sans,64,&H00FFFFFF,&H00FFFFFF,&HA0000000,&HA0000000,1,0,0,0,100,100,0,0,3,22,0,5,60,60,0,1
+Style: Hit,DejaVu Sans,80,&H00FFFFFF,&H00FFFFFF,&H002020E0,&H002020E0,1,0,0,0,100,100,0,0,3,28,0,5,50,50,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.00,0:00:02.20,Q,,0,0,0,,{\pos(540,560)\fad(150,150)\t(0,150,\fscx108\fscy108)\t(150,300,\fscx100\fscy100)}{\c&H0000D7FF&}⚠{\c&H00FFFFFF&} Dây điện gần lò bị chảy nhựa?
+Dialogue: 1,0:00:00.70,0:00:02.20,Q,,0,0,0,,{\pos(540,760)\fad(150,150)\t(0,150,\fscx108\fscy108)\t(150,300,\fscx100\fscy100)}{\c&H0000D7FF&}⚠{\c&H00FFFFFF&} Motor, biến áp nóng cháy dây?
+Dialogue: 1,0:00:01.40,0:00:02.20,Q,,0,0,0,,{\pos(540,960)\fad(150,150)\t(0,150,\fscx108\fscy108)\t(150,300,\fscx100\fscy100)}{\c&H0000D7FF&}⚠{\c&H00FFFFFF&} Sợ chập cháy, rò điện?
+Dialogue: 2,0:00:02.20,0:00:03.50,Hit,,0,0,0,,{\pos(540,860)\fad(80,200)\t(0,120,\fscx125\fscy125)\t(120,260,\fscx100\fscy100)}BỌC NGAY ỐNG GEN\NCHỊU NHIỆT 600°C!
