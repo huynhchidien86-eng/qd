@@ -308,9 +308,9 @@ def escape_filter_path(p):
     return str(p).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
 
-# Giọng khỏe, rõ, to hơn ~25%: nén đều tiếng, giảm ù trầm, tăng dải rõ chữ.
-VOICE_FX = ("acompressor=threshold=-22dB:ratio=3:attack=5:release=60:makeup=2,"
-            "equalizer=f=180:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1.2:g=3,volume=1.25")
+# Giọng chắc, ấm, rõ chữ và tự nhiên: nén nhẹ, thêm chút ấm, rõ chữ vừa phải (không chói).
+VOICE_FX = ("acompressor=threshold=-20dB:ratio=2.5:attack=10:release=120:makeup=1.5,"
+            "equalizer=f=160:t=q:w=1:g=1.5,equalizer=f=2800:t=q:w=1.5:g=1.2,volume=1.15")
 
 STUDIO = ("hqdn3d=2.5:2:4:3,"                                   # khử nhiễu, da/bề mặt mịn hơn
           "eq=brightness=0.035:contrast=1.07:saturation=1.10:gamma=1.06,"  # sáng, trong, tươi
@@ -505,8 +505,8 @@ def main():
                    help="edge = giọng Microsoft (cần mạng), espeak = giọng máy để chạy thử")
     p.add_argument("--giong-doc", default="vi-VN-HoaiMyNeural",
                    help="vi-VN-HoaiMyNeural (nữ) hoặc vi-VN-NamMinhNeural (nam)")
-    p.add_argument("--toc-do", default="+50%", help="tốc độ đọc, vd +50%% hoặc +25%%")
-    p.add_argument("--cao-giong", default="+6Hz", help="độ cao giọng, vd +6Hz cho giọng tươi hơn")
+    p.add_argument("--toc-do", default="+30%", help="tốc độ đọc, vd +30%%; quá +40%% nghe chói, không tự nhiên")
+    p.add_argument("--cao-giong", default="+0Hz", help="độ cao giọng; giữ +0Hz cho tự nhiên (nâng cao nghe như trẻ con)")
     p.add_argument("--nhanh", type=float, default=1.0,
                    help="tăng tốc cả video (giữ cao độ giọng), vd 1.2; dùng với --goc để chữ/phụ đề tự dời")
     p.add_argument("--nen-am-luong", default="0.25", help="âm lượng tiếng gốc khi có giọng đọc (0-1)")

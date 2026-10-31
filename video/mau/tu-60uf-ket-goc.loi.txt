@@ -1,0 +1,2 @@
+# Câu kết (chỉ đọc) video tụ 60uF; mốc theo VIDEO GỐC video3.mov (dùng với --goc).
+@70.0 | Cần thay tụ motor chuẩn, anh em ghé Linh Kiện Quỳnh Diễn nhé.

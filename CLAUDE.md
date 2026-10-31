@@ -118,10 +118,12 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   thật thì làm bản chữ chạy, không giọng đọc.
 - Video đã làm: IMG_5312 (Fe silic EI), ổ cắm siêu tải 6000W (Drive id
   `1ov4emmpEYuPNuk_oB421OYpu5i6tmzIP`, mẫu `video/mau/o-cam-6000w.*`).
-- Giọng mặc định: **vi-VN-HoaiMyNeural** (nữ), **tốc độ `+50%`, cao giọng `+6Hz`** (mặc định trong
-  `edit.py`; anh muốn cuốn, không để người xem chờ). Giọng luôn qua `VOICE_FX` (nén, rõ chữ, to hơn 25%).
-- **Nhịp nhanh**: video sản phẩm dùng `--nhanh 1.2 --goc` (tăng tốc cả hình cho khớp giọng đọc nhanh;
-  mốc chữ/@lời đọc soạn theo video gốc, script tự dời). Video người nói thật dùng `--nhanh 1.25`.
+- Giọng mặc định: **vi-VN-HoaiMyNeural** (nữ), **tốc độ `+30%`, cao giọng `+0Hz`** (mặc định trong
+  `edit.py`). Anh muốn giọng **thật, tự nhiên, cuốn hút**. ĐÃ BỊ CHÊ: `+50%` + nâng cao giọng `+6Hz`
+  nghe "éo éo như con nít"; tốc độ thường (+0%) thì "buồn ngủ". Không tăng tốc quá +35%, không nâng
+  cao giọng. Giọng qua `VOICE_FX` (nén nhẹ, ấm, rõ chữ vừa phải, không chói).
+- **KHÔNG tăng tốc cả video** (`--nhanh` để 1.0; tùy chọn vẫn còn nhưng anh không thích). Video người
+  nói thật giữ tốc độ gốc.
 - Lời đọc phải vừa độ dài video. Câu kết (lời mời nhẹ nhàng) neo bằng `@giây` trùng lúc
   khung kết trong file `.ass` hiện ra.
 - Ổ cắm 6000W là hàng thương hiệu **SOPOKA** (đọc "Sô pô ca").
@@ -141,15 +143,17 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - **Thư mục video chính để "làm dần"**: `MAKETING/AFFILIATE HÀNG TOP/VIDEO THÔ` (đổi tên từ "VIDEO Tiep thi" 31/10; đã chia sẻ).
   Danh sách + mã Drive + trạng thái: `video/danh-sach-tiep-thi.md`. Làm xong video nào thì
   đánh dấu ✅ ở đó. Video quay ngang 4K: dùng `--day-khung` (cắt đầy khung dọc).
-- **Luôn cắt dư thừa**: video người nói thật dùng `--cat-ngap` (cắt "ờ, à", ngập ngừng, khoảng lặng
-  > 1s; đoạn `--tua`/`--zoom` được giữ). Bỏ đoạn đầu/cuối chết bằng `--bo`. Video đã edit sẵn mà chưa
-  chuẩn (outro "Follow", câu "bấm theo dõi kênh"…) cũng cắt bỏ rồi thay khung kết nhẹ nhàng.
-  Đoạn hành động quan trọng nhưng im (đo, xả tụ) thì `--tua` chứ không cắt.
+- **Cắt dư thừa nhưng KHÔNG mất đoạn quan trọng**: chỉ cắt câu nói thừa, "ờ, à", đoạn đầu/cuối chết,
+  outro "Follow"/"bấm theo dõi kênh" (thay bằng khung kết nhẹ nhàng). **Không cắt, không tua** đoạn
+  đang có hành động dù im lặng (đo, chờ đồng hồ, nạp, xả tụ, thao tác tay). ĐÃ BỊ CHÊ: `--cat-ngap` +
+  `--tua` trên video tụ làm mất đoạn đo/xả. Chỉ dùng `--cat-ngap` khi video là người nói liên tục
+  (không thao tác), và xem lại danh sách đoạn cắt nó in ra trước khi dựng. Không chắc thì giữ.
 - **Luôn bật `--studio`**: ánh sáng sáng mịn kiểu studio (khử nhiễu, sáng, tương phản, ấm nhẹ, nét).
 - Video có người nói + câu kết bằng giọng đọc: dùng cả `--srt` (phụ đề lời thật) và `--giong` (file chỉ
   có dòng `@giây | câu kết`); giọng thật giữ nguyên âm lượng. Mẫu `video/mau/tu-60uf-ket.loi.txt`.
-- Video tụ làm 2 bước: bản dựng `v3base` (= `--bo 0-1.6 --tua 15.6-20.5x2,35-43.4x3 --chi-dung`), rồi
-  dựng tiếp trên `v3base` với `--goc` (lệnh đầy đủ trong commit "Giọng nhanh, khỏe").
+- Video tụ (bản hiện tại): dựng thẳng từ `video3.mov` với `--goc --bo "0-1.6,70.6-79.95"` (chỉ bỏ câu
+  thừa đầu + outro), dùng các file theo giờ gốc `video/mau/tu-60uf-goc.{srt,ass}`, `tu-60uf-ket-goc.loi.txt`
+  (lệnh đầy đủ trong commit "Giọng tự nhiên").
 - Whisper hay "bịa" câu "subscribe cho kênh…" khi video không có lời: coi như không có lời nói.
 - Mẹo cho anh: chia sẻ cả thư mục VIDEO "Bất kỳ ai có đường liên kết" một lần là mọi file
   trong đó tải được.

@@ -1,0 +1,36 @@
+[Script Info]
+; [Thời gian theo VIDEO GỐC video3.mov, dùng với --goc] Chữ nổi bật cho video review TỤ NHÔM CBB 60uF 450VAC EUN SUNG (bản đã bỏ/tua, ~70s).
+; Video có giọng nói thật: phụ đề ở tu-60uf.srt, chữ nổi bật đặt phía trên để không đè phụ đề.
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Tiêu đề lớn: chữ vàng viền đen
+Style: Title,DejaVu Sans,84,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,300,1
+; Thông số: chữ trắng hộp đen mờ, phía trên
+Style: Badge,DejaVu Sans,54,&H00FFFFFF,&H00FFFFFF,&H90000000,&H90000000,1,0,0,0,100,100,0,0,3,20,0,8,60,60,300,1
+; Kết quả đo: hộp xanh lá lớn
+Style: Result,DejaVu Sans,72,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,24,0,8,60,60,300,1
+; Lời kêu gọi cuối
+Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
+; Kết nhẹ nhàng: tên shop mờ dần trượt lên, gạch xanh mảnh, dòng phụ nhỏ
+Style: Soft,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,1,0,1,0,4,5,40,40,0,1
+Style: Soft2,DejaVu Sans,44,&H00C8F0FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,0,3,5,40,40,0,1
+Style: Line,DejaVu Sans,20,&H0026B522,&H0026B522,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:01.80,0:00:04.60,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}TỤ NHÔM CBB\N60µF – 450VAC
+Dialogue: 1,0:00:08.10,0:00:15.60,Badge,,0,0,0,,{\fad(250,250)}Tụ ngậm motor 1 pha\N{\c&H0000D7FF&}Máy bơm · Máy lạnh · Điều hòa
+Dialogue: 1,0:00:20.65,0:00:28.45,Badge,,0,0,0,,{\fad(250,250)}60µF ±5% · 450VAC\N{\c&H0000D7FF&}50/60Hz · Vỏ nhôm
+Dialogue: 1,0:00:29.05,0:00:32.85,Badge,,0,0,0,,{\fad(250,250)}Thương hiệu EUN SUNG\N{\c&H0000D7FF&}Hàn Quốc
+Dialogue: 1,0:00:43.65,0:00:50.85,Result,,0,0,0,,{\fad(200,250)\t(0,250,\fscx115\fscy115)\t(250,450,\fscx100\fscy100)}ĐO THỰC TẾ: 60.21µF ✔\N{\fs50}Đủ dung lượng
+Dialogue: 1,0:00:55.15,0:01:02.65,Badge,,0,0,0,,{\fad(250,250)}Nạp thẳng 220V\N{\c&H0000D7FF&}Thử nạp – xả trực tiếp
+Dialogue: 1,0:01:09.45,0:01:24.65,Line,,0,0,0,,{\an7\pos(0,0)\c&H000000&\1a&HFF&\t(0,700,\1a&H60&)\p1}m 0 0 l 1080 0 l 1080 1920 l 0 1920{\p0}
+Dialogue: 2,0:01:09.65,0:01:24.65,Soft,,0,0,0,,{\an5\fad(700,300)\move(540,1430,540,1395,0,700)}Linh Kiện Quỳnh Diễn
+Dialogue: 2,0:01:09.95,0:01:24.65,Line,,0,0,0,,{\an5\pos(540,1462)\fad(600,300)\fscx0\t(0,700,\fscx100)\p1}m 0 0 l 360 0 l 360 5 l 0 5{\p0}
+Dialogue: 2,0:01:10.25,0:01:24.65,Soft2,,0,0,0,,{\an5\fad(700,300)\move(540,1525,540,1500,0,700)}Tụ CBB 60µF 450VAC · EUN SUNG
