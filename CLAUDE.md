@@ -24,6 +24,8 @@ Muốn bổ sung: anh sửa trực tiếp file này, hoặc bảo em "ghi vào b
 - Cấu trúc thư mục:
   - `tools/edit.py`: script edit chính (xem `python3 tools/edit.py -h`).
   - `tools/giong_doc.py`: tạo giọng đọc + phụ đề khớp từ file lời đọc `.txt`.
+  - `tools/anh_video.py`: ghép nhiều ảnh thành video dọc (zoom/lia chậm + chuyển cảnh),
+    rồi đưa vào `edit.py` để thêm chữ, giọng đọc, hiệu ứng như video thường.
   - `video/mau/`: mẫu chữ (`.ass`) và lời đọc (`.loi.txt`) theo từng sản phẩm.
   - `tools/setup.sh`: cài công cụ. Tự chạy đầu mỗi phiên cloud nhờ hook
     `.claude/hooks/session-start.sh` (khai báo trong `.claude/settings.json`).
@@ -124,6 +126,8 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Ống gen sợi thủy tinh: anh đồng ý **không dùng chữ "amiang"** (amiang = asbestos, chất
   độc) trong video; kích thước ghi Ø2–10mm. Mẫu `video/mau/ong-gen*` (Drive id
   `1lzwhDqIbZ2mvtNnYZLoQRP_6_xvpFuCn`).
+- Ảnh ống gen có sẵn trên Drive: "Ống gen Amiang HD.jpg", "Ống gen Amiang 1..8 HD.jpg" (mỗi ảnh
+  một thư mục riêng, chưa chia sẻ lúc 31/10).
 - Mẹo cho anh: chia sẻ cả thư mục VIDEO "Bất kỳ ai có đường liên kết" một lần là mọi file
   trong đó tải được.
 - **Video có người nói thật** (review, đo thử): giữ giọng thật, không chèn giọng đọc máy.
