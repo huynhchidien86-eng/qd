@@ -8,6 +8,7 @@ Ví dụ:
 Kết quả mặc định nằm ở video/xong/<tên>_edit.mp4.
 """
 import argparse
+import json
 import shutil
 import subprocess
 import sys
@@ -26,12 +27,16 @@ def run(cmd):
     subprocess.run([str(c) for c in cmd], check=True)
 
 
-def probe(path, entries):
+def video_size(path):
+    """Kích thước khung hình sau khi xoay (video iPhone quay dọc lưu kèm góc xoay)."""
     out = subprocess.run(
         ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
-         entries, "-of", "csv=p=0", str(path)],
-        capture_output=True, text=True, check=True).stdout.strip()
-    return out.split(",")
+         "stream=width,height:stream_side_data=rotation", "-of", "json", str(path)],
+        capture_output=True, text=True, check=True).stdout
+    st = json.loads(out)["streams"][0]
+    w, h = st["width"], st["height"]
+    rotation = next((int(d["rotation"]) for d in st.get("side_data_list", []) if "rotation" in d), 0)
+    return (h, w) if abs(rotation) % 180 == 90 else (w, h)
 
 
 def duration(path):
@@ -103,7 +108,7 @@ def escape_filter_path(p):
 
 
 def render(src, dst, args, srt):
-    w, h = (int(x) for x in probe(src, "stream=width,height"))
+    w, h = video_size(src)
     total = duration(src)
     inputs = ["-i", src]
     vchain = []
