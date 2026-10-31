@@ -22,7 +22,8 @@ Muốn bổ sung: anh sửa trực tiếp file này, hoặc bảo em "ghi vào b
 - Stack: FFmpeg, Python 3, `auto-editor` (cắt khoảng lặng), `faster-whisper` (phụ đề).
 - Cấu trúc thư mục:
   - `tools/edit.py`: script edit chính (xem `python3 tools/edit.py -h`).
-  - `tools/setup.sh`: cài công cụ (chạy đầu mỗi phiên cloud).
+  - `tools/setup.sh`: cài công cụ. Tự chạy đầu mỗi phiên cloud nhờ hook
+    `.claude/hooks/session-start.sh` (khai báo trong `.claude/settings.json`).
   - `video/tho/`: video thô (không đưa lên git).
   - `video/xong/`: video đã edit (không đưa lên git).
   - `video/assets/`: logo, nhạc nền, font dùng chung.
@@ -40,7 +41,7 @@ Muốn bổ sung: anh sửa trực tiếp file này, hoặc bảo em "ghi vào b
 <!-- Ví dụ: npm test, make build, ./scripts/dev.sh -->
 
 ```bash
-bash tools/setup.sh                       # cài công cụ (đầu mỗi phiên)
+bash tools/setup.sh                       # cài công cụ (hook đã tự chạy, chỉ cần khi lỗi)
 python3 tools/edit.py video/tho/abc.mp4 \
   --cat-lang --phu-de --khung 9:16 \
   --nhac video/assets/nhac.mp3 --logo video/assets/logo.png \
@@ -54,7 +55,7 @@ chỉnh bằng `--nguong-lang`, `--le`), `--phu-de` hoặc `--srt file.srt`,
 ## Quy trình edit video
 
 Khi anh bảo "lấy video thô edit":
-1. Chạy `bash tools/setup.sh`.
+1. Kiểm tra công cụ đã cài (hook tự chạy `tools/setup.sh`; nếu thiếu thì chạy tay).
 2. Lấy video thô về `video/tho/` (anh đính kèm file trong chat, hoặc link tải trực tiếp).
 3. Chạy `tools/edit.py` theo "phong cách mặc định" bên dưới, trừ khi anh dặn khác.
 4. Trích vài khung hình kiểm tra phụ đề/tiêu đề trước khi giao.
