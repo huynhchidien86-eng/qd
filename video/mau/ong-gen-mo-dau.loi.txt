@@ -1,0 +1,3 @@
+# Lời đọc đoạn mở đầu (hook) video ống gen: nói thẳng nỗi lo, đọc ngay giây đầu. Giữ dưới ~4.5s.
+Dây gần lò nóng, bọc nhựa thường là chảy!
+Loại này chịu tới 600 độ! | Loại này chịu tới sáu trăm độ!

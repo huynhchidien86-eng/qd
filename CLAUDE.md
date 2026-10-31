@@ -97,7 +97,7 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Nội dung chữ lấy từ mô tả sản phẩm anh gửi, viết ngắn gọn từng ý.
 - Video sản phẩm thường không có lời nói, nên không dùng `--cat-lang`.
 - Anh muốn có **giọng đọc kèm phụ đề**. Lời đọc viết từ mô tả sản phẩm, ~7 câu cho
-  video 30s, dòng cuối "Linh Kiện Quỳnh Diễn. Đặt hàng ngay!". Số, đơn vị, từ tiếng Anh
+  video 30s, dòng cuối là lời mời nhẹ nhàng (xem "Kết thúc" bên dưới). Số, đơn vị, từ tiếng Anh
   viết theo cách đọc ở vế sau dấu `|` (0.5mm → "không phẩy năm li", inverter → "in vớt tơ").
   Bản có giọng đọc dùng mẫu chữ `*-giong.ass` (bỏ hộp ý chính, tiêu đề đưa lên trên).
 - Font: DejaVu Sans (có đủ dấu tiếng Việt). Font này không có emoji; dùng ✔ ► thay emoji.
@@ -152,6 +152,16 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   đừng zoom đoạn video gốc đã quay cận); `--chop t` chớp sáng; `--sfx "t:whoosh|ding|pop"`.
   Thường: pop khi hộp chữ hiện, ding + chớp khi ra kết quả đo, whoosh lúc mở/CTA.
   Lệnh mẫu video tụ: xem lịch sử commit "hiệu ứng" hoặc dùng lại các mốc trong `tu-60uf.ass`.
+- **Mở đầu (hook) phải "cuốn"** (anh chê kiểu ảnh tĩnh làm mờ là chưa cuốn). Mặc định dùng:
+  `--mo-dau-canh t1,t2,t3,t4` (4 cảnh thật đẹp nhất cắt nhanh, zoom giật mỗi cảnh) +
+  `--mo-dau-giong hook.loi.txt` (giọng đọc ngay giây đầu, 2 câu ngắn: nỗi lo → giải pháp, tổng
+  ≤ ~5.5s) + file `.ass` chữ to: câu nỗi lo chữ trắng hộp đỏ, con số chốt chữ vàng rất to.
+  Mẫu: `video/mau/ong-gen-mo-dau.*`. Không nói quá thông số (ghi "chịu tới 600°C", không ghi
+  "không cháy").
+- **Kết thúc kêu gọi nhẹ nhàng, tinh tế** (anh không thích hộp to "ĐẶT HÀNG NGAY!"): nền tối mờ
+  dần, tên shop "Linh Kiện Quỳnh Diễn" mờ dần trượt nhẹ lên, gạch xanh mảnh, một dòng phụ nhỏ
+  về sản phẩm; giọng đọc kiểu "Cần …, anh em ghé Linh Kiện Quỳnh Diễn nhé." (dòng lời đọc
+  dạng `@giây | lời` = chỉ đọc, không hiện phụ đề). Mẫu: cuối `video/mau/ong-gen-giong.ass`.
 - **Tình huống minh họa bằng hình thật** (máy bơm, máy lạnh hỏng…): em không tự tạo được
   video thật. Cần anh quay thêm clip 3–5s ở xưởng, hoặc mở mạng tới kho video miễn phí.
 - Nhạc nền: anh muốn có. Chờ anh gửi file nhạc miễn bản quyền, lưu vào `video/assets/`.

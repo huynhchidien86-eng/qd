@@ -14,7 +14,11 @@ Style: Brand,DejaVu Sans,38,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,
 Style: Title,DejaVu Sans,70,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,260,1
 ; Ý chính: chữ trắng trên nền đen mờ
 Style: Point,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,22,0,8,70,70,260,1
-; Lời kêu gọi cuối
+; Kết nhẹ nhàng: tên shop mờ dần trượt lên, gạch xanh mảnh, dòng phụ nhỏ
+Style: Soft,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,1,0,1,0,4,5,40,40,0,1
+Style: Soft2,DejaVu Sans,44,&H00C8F0FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,0,3,5,40,40,0,1
+Style: Line,DejaVu Sans,20,&H0026B522,&H0026B522,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+; Lời kêu gọi cuối (kiểu cũ, không dùng)
 Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
 
 [Events]
@@ -23,4 +27,7 @@ Dialogue: 0,0:00:00.00,0:00:23.00,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
 Dialogue: 1,0:00:00.30,0:00:03.70,Title,,0,0,0,,{\fad(300,300)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}ỐNG GEN SỢI THỦY TINH\NCHỊU NHIỆT – CUỘN 50M
 Dialogue: 1,0:00:03.80,0:00:07.40,Point,,0,0,0,,{\fad(200,250)\t(0,250,\fscx115\fscy115)\t(250,450,\fscx100\fscy100)}400°C liên tục ✔\N{\c&H0000D7FF&}600°C tức thời ✔
 Dialogue: 1,0:00:20.30,0:00:22.90,Point,,0,0,0,,{\fad(200,250)}Ø2 – 10mm\N{\c&H0000D7FF&}Nguyên cuộn 50 mét
-Dialogue: 1,0:00:23.00,0:00:26.30,CTA,,0,0,0,,{\fad(300,0)}LINH KIỆN\NQUỲNH DIỄN\N{\fs52\c&H0000D7FF&}► ĐẶT HÀNG NGAY!
+Dialogue: 1,0:00:22.90,0:00:27.00,Line,,0,0,0,,{\an7\pos(0,0)\c&H000000&\1a&HFF&\t(0,700,\1a&H70&)\p1}m 0 0 l 1080 0 l 1080 1920 l 0 1920{\p0}
+Dialogue: 2,0:00:23.10,0:00:27.00,Soft,,0,0,0,,{\an5\fad(700,300)\move(540,1430,540,1395,0,700)}Linh Kiện Quỳnh Diễn
+Dialogue: 2,0:00:23.40,0:00:27.00,Line,,0,0,0,,{\an5\pos(540,1462)\fad(600,300)\fscx0\t(0,700,\fscx100)\p1}m 0 0 l 360 0 l 360 5 l 0 5{\p0}
+Dialogue: 2,0:00:23.70,0:00:27.00,Soft2,,0,0,0,,{\an5\fad(700,300)\move(540,1525,540,1500,0,700)}Ống gen chịu nhiệt · đủ size Ø2–10mm

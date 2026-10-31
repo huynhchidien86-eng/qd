@@ -36,6 +36,7 @@ def parse_script(path):
             at, raw = float(m.group(1)), m.group(2)
         shown, _, spoken = raw.partition("|")
         lines.append({"at": at, "shown": shown.strip(), "spoken": (spoken or shown).strip()})
+        # "| lời đọc" (vế trái rỗng): chỉ đọc, không hiện phụ đề.
     return lines
 
 
@@ -106,7 +107,7 @@ def make_voice(script, tmp, engine="edge", voice="vi-VN-HoaiMyNeural", rate="+0%
             t = max(t, line["at"])
         clips.append((clip, t))
         # Thời gian từng dòng phụ đề chia theo số ký tự.
-        chunks = split_chunks(line["shown"])
+        chunks = split_chunks(line["shown"]) if line["shown"] else []
         total_chars = sum(len(c) for c in chunks)
         ct = t
         for c in chunks:

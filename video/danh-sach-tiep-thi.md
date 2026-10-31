@@ -12,7 +12,8 @@ Nhiều file là bản trùng (cùng dung lượng) hoặc video đã edit sẵn
 
 ## Ống gen sợi thủy tinh (mô tả đã có, không dùng chữ "amiang")
 - ✅ `Amiang 2mm.MOV` — `1lyyWjujagA09ReQUuzoDBtHI8Xh-URi4` (4K ngang, 26s, không lời nói)
-  → `video/xong/ong-gen-2mm_giong.mp4`, mẫu `video/mau/ong-gen*`
+  → `video/xong/ong-gen-2mm_giong.mp4`, mẫu `video/mau/ong-gen*`. Lệnh:
+  `edit.py video/tho/ong-gen-2mm.mov --khung 9:16 --day-khung --chu video/mau/ong-gen-giong.ass --giong video/mau/ong-gen.loi.txt --phu-de-cao 60 --chuan-am --chop 3.8 --sfx 0.3:whoosh,3.8:ding,20.3:pop --mo-dau video/mau/ong-gen-mo-dau.ass --mo-dau-canh 3,9.5,13,19 --mo-dau-giong video/mau/ong-gen-mo-dau.loi.txt`
 - `Amiang 2mm.mp4` — `1qjlAhHVf4EI9hCGCELCaJ-w573FYtJyE` (trùng cảnh với bản .MOV)
 
 ## Bulong ốc vít (⏳ chờ mô tả)

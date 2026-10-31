@@ -202,6 +202,62 @@ def escape_filter_path(p):
     return str(p).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
 
 
+def frame_chain(args, w, h):
+    """Bộ lọc đưa video về khung mới. Trả về (bộ lọc hoặc None, rộng, cao)."""
+    if args.khung and args.day_khung:
+        # Cắt đầy khung mới (không nền mờ), giữ phần giữa; hợp với video quay ngang độ phân giải cao.
+        _, out_w, out_h = frame_filter(args.khung, w, h)
+        return (f"scale={out_w}:{out_h}:force_original_aspect_ratio=increase,"
+                f"crop={out_w}:{out_h}:(iw-{out_w})*{args.day_khung_x}:(ih-{out_h})/2", out_w, out_h)
+    if args.khung:
+        return frame_filter(args.khung, w, h)
+    return None, w, h
+
+
+def make_hook_cut(src, args, ass, dst, tmp):
+    """Mở đầu "cuốn": cắt nhanh các cảnh thật (zoom giật mỗi lần chuyển), giọng đọc ngay giây đầu,
+    chữ to từ file ASS. Cảnh lấy tại các mốc --mo-dau-canh (giây trong video sau bỏ/tua)."""
+    from giong_doc import make_voice
+    times = [float(t) for t in args.mo_dau_canh.split(",")]
+    voice_end = 0.0
+    if args.mo_dau_giong:
+        hv, _, voice_end = make_voice(args.mo_dau_giong, tmp / "hookvoice", args.giong_engine,
+                                      args.giong_doc, args.toc_do, args.cao_giong)
+    total = max(args.mo_dau_giay, voice_end + 0.3)
+    seg = total / len(times)
+    w, h = video_size(src)
+    f, out_w, out_h = frame_chain(args, w, h)
+    graph = []
+    for i, t in enumerate(times):
+        # Zoom giật: 1.22 -> 1.0 trong 0.35s đầu mỗi cảnh.
+        graph.append(f"[0:v]trim=start={t}:duration={seg:.3f},setpts=PTS-STARTPTS,"
+                     f"{f + ',' if f else ''}"
+                     f"zoompan=z='max(1,1.22-0.63*it)':d=1:fps=30:s={out_w}x{out_h}"
+                     f":x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2',setsar=1[c{i}]")
+    graph.append("".join(f"[c{i}]" for i in range(len(times)))
+                 + f"concat=n={len(times)}:v=1:a=0,eq=contrast=1.08:saturation=1.15,"
+                 f"subtitles='{escape_filter_path(ass)}',format=yuv420p[v]")
+    inputs = ["-i", src]
+    hits = [(i * seg, "whoosh" if i == 0 else "pop") for i in range(len(times))]
+    mix = []
+    for i, (t, k) in enumerate(hits):
+        inputs += ["-i", sfx_file(k)]
+        graph.append(f"[{i + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
+                     f"adelay={int(t * 1000)}|{int(t * 1000)}[s{i}]")
+        mix.append(f"[s{i}]")
+    if args.mo_dau_giong:
+        inputs += ["-i", hv]
+        graph.append(f"[{len(hits) + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo[hv]")
+        mix.append("[hv]")
+    graph.append(f"anullsrc=r=48000:cl=stereo,atrim=duration={total:.3f}[sil]")
+    graph.append(f"[sil]{''.join(mix)}amix=inputs={len(mix) + 1}:duration=first:normalize=0,"
+                 f"loudnorm=I=-14:TP=-1.5:LRA=11[a]")
+    run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", ";".join(graph),
+         "-map", "[v]", "-map", "[a]", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "veryfast",
+         "-crf", "18", "-c:a", "aac", "-b:a", "192k", dst])
+    print(f"Mở đầu: {total:.1f}s, {len(times)} cảnh")
+
+
 def render(src, dst, args, srt, voice=None, voice_end=0.0):
     w, h = video_size(src)
     video_len = duration(src)
@@ -215,13 +271,8 @@ def render(src, dst, args, srt, voice=None, voice_end=0.0):
         vchain.append(f"tpad=stop_mode=clone:stop_duration={total - video_len:.3f}")
         print(f"Giọng đọc dài hơn video: giữ khung cuối thêm {total - video_len:.1f}s")
 
-    if args.khung and args.day_khung:
-        # Cắt đầy khung mới (không nền mờ), giữ phần giữa; hợp với video quay ngang độ phân giải cao.
-        _, out_w, out_h = frame_filter(args.khung, w, h)
-        vchain.append(f"scale={out_w}:{out_h}:force_original_aspect_ratio=increase,"
-                      f"crop={out_w}:{out_h}:(iw-{out_w})*{args.day_khung_x}:(ih-{out_h})/2")
-    elif args.khung:
-        f, out_w, out_h = frame_filter(args.khung, w, h)
+    f, out_w, out_h = frame_chain(args, w, h)
+    if f:
         vchain.append(f)
     for a, b_, z, cx, cy in args.zoom_list:
         # Phóng to mượt (0.4s vào, 0.4s ra) quanh điểm (cx, cy) tính theo tỉ lệ khung.
@@ -347,6 +398,8 @@ def main():
     p.add_argument("--sfx", help="tiếng hiệu ứng 'giây:loại', loại = whoosh|ding|pop, vd 0.2:whoosh,34.1:ding")
     p.add_argument("--mo-dau", help="file .ass cho đoạn mở đầu tình huống (thời gian tính từ 0)")
     p.add_argument("--mo-dau-giay", type=float, default=3.5, help="độ dài đoạn mở đầu")
+    p.add_argument("--mo-dau-canh", help="mở đầu cắt nhanh từ cảnh thật tại các giây, vd 2.5,9.5,13")
+    p.add_argument("--mo-dau-giong", help="file lời đọc cho đoạn mở đầu (đọc ngay giây đầu)")
     p.add_argument("--crf", type=int, default=20, help="chất lượng (thấp = đẹp hơn, nặng hơn)")
     p.add_argument("--preset", default="medium", help="tốc độ nén x264")
     p.add_argument("--giu-srt", action="store_true", help="lưu file .srt cạnh video kết quả")
@@ -404,7 +457,11 @@ def main():
         if args.mo_dau:
             body = tmp / "body.mp4"
             render(cur, body, args, srt, voice, voice_end)
-            make_hook(body, Path(args.mo_dau).resolve(), args.mo_dau_giay, tmp / "hook.mp4")
+            if args.mo_dau_canh:
+                (tmp / "hookvoice").mkdir(exist_ok=True)
+                make_hook_cut(cur, args, Path(args.mo_dau).resolve(), tmp / "hook.mp4", tmp)
+            else:
+                make_hook(body, Path(args.mo_dau).resolve(), args.mo_dau_giay, tmp / "hook.mp4")
             concat([tmp / "hook.mp4", body], dst, args)
         else:
             render(cur, dst, args, srt, voice, voice_end)
