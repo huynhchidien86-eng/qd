@@ -112,5 +112,9 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   `huggingface.co`. Còn thiếu `*.hf.co` (máy chủ tải model Whisper), nên `--phu-de`
   chưa chạy được. Tạm thời dùng `--srt`.
 - Không tải video qua Drive connector (base64 quá nặng), dùng curl như trên.
+- Anh chê giọng espeak "nghe kỳ": **không giao video dùng giọng espeak**. Chưa có giọng
+  thật thì làm bản chữ chạy, không giọng đọc.
+- Video đã làm: IMG_5312 (Fe silic EI), ổ cắm siêu tải 6000W (Drive id
+  `1ov4emmpEYuPNuk_oB421OYpu5i6tmzIP`, mẫu `video/mau/o-cam-6000w.*`).
 - Giọng đọc `edge-tts` cần mở mạng `speech.platform.bing.com` (chưa mở). Khi chưa có,
   chỉ chạy thử được bằng `--giong-engine espeak` (giọng máy, không dùng để đăng).
