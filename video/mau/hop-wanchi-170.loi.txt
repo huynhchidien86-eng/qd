@@ -1,5 +1,5 @@
-# Lời đọc video HỘP NHỰA ĐIỆN TỬ WANCHI KW-CN-170 (làm từ 5 ảnh). WANCHI đọc "Oan chi".
-Hộp nhựa điện tử WANCHI, kích thước 170 x 95 x 70mm. | Hộp nhựa điện tử Oan chi, kích thước một trăm bảy mươi nhân chín mươi lăm nhân bảy mươi li.
+# Lời đọc video HỘP NHỰA ĐIỆN TỬ WANCHI KW-CN-170 (làm từ 5 ảnh). WANCHI đọc "Wan-chi" (viết "Uan chi" cho máy đọc đúng).
+Hộp nhựa điện tử WANCHI, kích thước 170 x 95 x 70mm. | Hộp nhựa điện tử Uan chi, kích thước một trăm bảy mươi nhân chín mươi lăm nhân bảy mươi li.
 Thân nhựa ABS chắc chắn, nắp mica trong suốt, nhìn rõ đèn LED và relay bên trong. | Thân nhựa A B S chắc chắn, nắp mi ca trong suốt, nhìn rõ đèn led và rơ le bên trong.
 Có ron chống nước, kèm đủ 4 ốc vít, lắp được quạt 4cm. | Có ron chống nước, kèm đủ bốn ốc vít, lắp được quạt bốn phân.
 Hợp cho Arduino, ESP32, mạch điều khiển, hộp nguồn và nhà thông minh. | Hợp cho mạch A đu i nô, E S P ba hai, mạch điều khiển, hộp nguồn và nhà thông minh.

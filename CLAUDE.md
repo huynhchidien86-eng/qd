@@ -166,7 +166,9 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   chat được lưu ở thư mục `images/` của phiên (đường dẫn hiện trong tin nhắn) → copy vào
   `video/tho/<sp>/`, sắp thứ tự khớp lời đọc → `tools/anh_video.py --giay <lời đọc/số ảnh + 0.5>`
   → `edit.py` như video thường (mở đầu `--mo-dau-canh` lấy giữa mỗi ảnh, tránh lúc chuyển cảnh).
-  Ảnh vuông thì chữ nổi bật đặt trên ảnh, phụ đề dưới ảnh. WANCHI đọc "Oan chi".
+  Ảnh vuông thì chữ nổi bật đặt trên ảnh, phụ đề dưới ảnh.
+- Cách đọc thương hiệu: **WANCHI = "Wan-chi"**; trong lời đọc viết `Uan chi` (viết "Wan chi" máy đọc
+  thành "Quang chi"). Kiểm tra cách đọc lạ: tạo vài cách viết, cho Whisper nghe lại, chọn cái đúng.
 - **Tình huống minh họa bằng hình thật** (máy bơm, máy lạnh hỏng…): em không tự tạo được
   video thật. Cần anh quay thêm clip 3–5s ở xưởng, hoặc mở mạng tới kho video miễn phí.
 - Nhạc nền: anh muốn có. Chờ anh gửi file nhạc miễn bản quyền, lưu vào `video/assets/`.
