@@ -92,8 +92,8 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Khung dọc 9:16 (1080x1920), giữ độ dài gốc, mờ dần đầu/cuối, `--chuan-am`.
 - Chữ chạy theo thời gian bằng file ASS (`--chu`): tên shop trong hộp xanh lá cố định
   ở trên; tiêu đề sản phẩm lớn màu vàng viền đen 4 giây đầu; mỗi 4–5 giây một ý chính
-  (công dụng, đặc điểm, size, cam kết) trong hộp đen mờ ở dưới; cuối video hộp xanh
-  lá "LINH KIỆN QUỲNH DIỄN ► ĐẶT HÀNG NGAY!".
+  (công dụng, đặc điểm, size, cam kết) trong hộp đen mờ ở dưới; cuối video là khung kết
+  nhẹ nhàng (xem "Kết thúc kêu gọi nhẹ nhàng" bên dưới), **không** dùng hộp "ĐẶT HÀNG NGAY!".
 - Nội dung chữ lấy từ mô tả sản phẩm anh gửi, viết ngắn gọn từng ý.
 - Video sản phẩm thường không có lời nói, nên không dùng `--cat-lang`.
 - Anh muốn có **giọng đọc kèm phụ đề**. Lời đọc viết từ mô tả sản phẩm, ~7 câu cho
@@ -120,8 +120,8 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   `1ov4emmpEYuPNuk_oB421OYpu5i6tmzIP`, mẫu `video/mau/o-cam-6000w.*`).
 - Giọng mặc định: **vi-VN-HoaiMyNeural** (nữ), **tốc độ `+25%`, cao giọng `+4Hz`**
   (anh chê tốc độ thường "nghe buồn ngủ"; đây là mặc định trong `edit.py`).
-- Lời đọc phải vừa độ dài video. Câu cuối "Linh Kiện Quỳnh Diễn. Đặt hàng ngay!" neo bằng
-  `@giây` trùng lúc khung CTA trong file `.ass` hiện ra.
+- Lời đọc phải vừa độ dài video. Câu kết (lời mời nhẹ nhàng) neo bằng `@giây` trùng lúc
+  khung kết trong file `.ass` hiện ra.
 - Ổ cắm 6000W là hàng thương hiệu **SOPOKA** (đọc "Sô pô ca").
 - Ống gen sợi thủy tinh: anh đồng ý **không dùng chữ "amiang"** (amiang = asbestos, chất
   độc) trong video; kích thước ghi Ø2–10mm. Mẫu `video/mau/ong-gen*` (Drive id
@@ -179,5 +179,9 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   thành "Quang chi"). Kiểm tra cách đọc lạ: tạo vài cách viết, cho Whisper nghe lại, chọn cái đúng.
 - **Tình huống minh họa bằng hình thật** (máy bơm, máy lạnh hỏng…): em không tự tạo được
   video thật. Cần anh quay thêm clip 3–5s ở xưởng, hoặc mở mạng tới kho video miễn phí.
-- Nhạc nền: anh muốn có. Chờ anh gửi file nhạc miễn bản quyền, lưu vào `video/assets/`.
+- **Nhạc nền**: anh bỏ file nhạc (miễn bản quyền) vào Drive `MAKETING/AFFILIATE HÀNG TOP/NHẠC NỀN (Claude)`
+  (folder id `1ZKZViats-94aZGUR2FLOmVSgqL2d7RxW`; cần chia sẻ "Bất kỳ ai có đường liên kết").
+  Em liệt kê bằng Drive connector (`parentId = '<id>'`), tải bằng curl vào `video/assets/nhac/`
+  (không đưa nhạc lên git). Dùng `--nhac file --nhac-am-luong 0.12`; video có giọng đọc/người nói
+  để nhạc nhỏ (0.08–0.12) cho không lấn giọng.
 - Kiểm tra giọng đọc: chạy Whisper nghe lại video (dùng `load_audio` trong `edit.py`).

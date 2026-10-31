@@ -8,3 +8,4 @@ video/xong/*
 *.mkv
 *.srt
 __pycache__/
+video/assets/nhac/
