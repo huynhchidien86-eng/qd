@@ -156,6 +156,15 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   18 Nhôm 2 tầng 7 cánh, 19 Nhôm 2 tầng 10 cánh, 23 Ổ cắm SOPOKA MAX 2200W (file "10A4"), 24 Nhôm thanh dài
   (file "1108"), 25 IGBT 40T120 MagnaChip mổ thử (giọng đọc). Bỏ qua "400UF", "800uf 11", "240-6": quảng cáo
   người dẫn AI đã dựng xong. Video 14 dựng lại vì câu kết bị đọc 2 lần.
+- 01/11 làm thêm **100 video 36–135** (lệnh: `tools/lenh/dung-36-135.sh`, danh sách Drive id `tools/lenh/dd-list.txt`,
+  `p2-list.txt`): 36–89 từ thư mục 2 › DÂN DỤNG mã 03–32 (mỗi clip .MOV = 1 video, hàng SOPOKA: ổ cắm, phích, cầu dao,
+  bóng, đui, chao đèn…); 90–135 từ TỤ (kẹo CBB22, bếp từ MKP-X2, khởi động, nhôm EUN SUNG, máy bơm), VẬT LIỆU (giấy
+  cách điện, băng keo vàng/Nano, sò nhiệt KSD301, gen sợi thủy tinh), dây nguồn, ru lô, HỘP NHỰA › CNC (VY ANH 170x95x70),
+  ống gen (thư mục cũ "Gen Amiang"). Bỏ: "Dây bus 3 pin lớn.mp4", "Cầu chì Aotu 20A.mp4" (quảng cáo dựng sẵn), IMG_7647
+  (trùng 7646). "Câu chi aotu 15A.mp4" thực ra là cầu chì KUOYUH 5A.
+- Cách làm đợt lớn: mỗi nhóm clip giao 1 subagent viết mẫu theo `tools/lenh/huong-dan-mau.md`, phiên chính dựng
+  tuần tự (máy 4 nhân, ~5–8 phút/video). Video có người nói thật mà nói "amiang" thì cắt đúng chữ đó bằng `--bo`
+  (lấy mốc bằng Whisper word_timestamps); phụ đề lời thật có "chống cháy/không cháy" thì bỏ dòng đó (không sửa lời).
 - Lưu lệnh dựng mỗi đợt thành script trong `tools/lenh/` để phiên sau chạy lại được.
 - Câu kết dạng `@giây | lời`: chỉ MỘT dấu `|` (viết 2 dấu thì trước đây máy đọc câu kết 2 lần; nay
   `giong_doc.py` chỉ đọc vế cuối).
