@@ -1,0 +1,3 @@
+# Hook.
+Phích cắm vướng, ổ chia nằm ngược?
+Phích này xoay được!
