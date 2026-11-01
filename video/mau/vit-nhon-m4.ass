@@ -11,9 +11,9 @@ Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour,
 ; Thương hiệu cố định góc trên
 Style: Brand,DejaVu Sans,38,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,14,0,8,40,40,70,1
 ; Tiêu đề lớn: chữ vàng viền đen
-Style: Title,DejaVu Sans,70,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,260,1
+Style: Title,DejaVu Sans,70,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,640,1
 ; Ý chính: chữ trắng trên nền đen mờ
-Style: Point,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,22,0,8,70,70,260,1
+Style: Point,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,22,0,8,70,70,640,1
 ; Kết nhẹ nhàng: tên shop mờ dần trượt lên, gạch xanh mảnh, dòng phụ nhỏ
 Style: Soft,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,1,0,1,0,4,5,40,40,0,1
 Style: Soft2,DejaVu Sans,44,&H00C8F0FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,0,3,5,40,40,0,1
