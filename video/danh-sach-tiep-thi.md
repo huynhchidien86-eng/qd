@@ -77,3 +77,16 @@ Lưu ý: nhiều file trùng hệt nhau dù tên khác (cùng dung lượng): 88
 - `2025050216xx.mp4`, `202504291607.mp4`, `20260116-162217.mp4`, `202601151430 (1) (1).mp4`,
   các file chỉ có số (`6156193653064.mp4`, `5299154518695.mp4`…), `taobao`, `Get APP`, `Lark…`:
   có vẻ video tải từ sàn/app, xem trước khi dùng (có thể vướng bản quyền).
+
+## Đợt 01/11 (16–25), lệnh dựng: `tools/lenh/dung-16-25.sh`
+- ✅ 16 `200x120x75 IGBT Wanchi Quạt Bên ( Trắng Nắp Trong).mp4` (người nói)
+- ✅ 17 `168x92x56 Volume Wanchi.mp4` (người nói)
+- ✅ 18 `2 tầng 7 cánh.mp4` = nhôm tản nhiệt 2 tầng 7 cánh (giọng đọc)
+- ✅ 19 `2 tầng 10 canh.mp4` = nhôm tản nhiệt 2 tầng 10 cánh (giọng đọc)
+- ✅ 20 `8 cánh nhỏ 5 tấc (shopee).mp4` = nhôm tản nhiệt 8 lá dài 50cm (người nói)
+- ✅ 21 `50x100mm.mp4` = khuôn biến áp 50x100 (người nói)
+- ✅ 22 `32x50mm.mp4` = khuôn biến áp 32x50 (người nói)
+- ✅ 23 `10A4.mp4` = ổ cắm kéo dài SOPOKA MAX 2200W (giọng đọc)
+- ✅ 24 `1108.mp4` = nhôm tản nhiệt thanh dài (giọng đọc, nhạc gốc bị thay)
+- ✅ 25 `40T120.MOV` = mổ thử IGBT 40T120 MagnaChip (giọng đọc, tiếng gốc là lời dặn quay phim)
+- ⛔ Bỏ qua: `400UF.mp4`, `800uf 11.mp4`, `240-6.mp4` (quảng cáo người dẫn AI đã dựng xong)
