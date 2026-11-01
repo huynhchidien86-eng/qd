@@ -90,3 +90,20 @@ Lưu ý: nhiều file trùng hệt nhau dù tên khác (cùng dung lượng): 88
 - ✅ 24 `1108.mp4` = nhôm tản nhiệt thanh dài (giọng đọc, nhạc gốc bị thay)
 - ✅ 25 `40T120.MOV` = mổ thử IGBT 40T120 MagnaChip (giọng đọc, tiếng gốc là lời dặn quay phim)
 - ⛔ Bỏ qua: `400UF.mp4`, `800uf 11.mp4`, `240-6.mp4` (quảng cáo người dẫn AI đã dựng xong)
+
+## Đợt 01/11 (26–35), lệnh dựng: `tools/lenh/dung-26-35.sh`
+Tải về tên file `video/tho/cNN-...` (xem script). Clip iPhone 20241222_163015/163056/163138 có chữ "Kẹp ắc quy 75A / 50A / Kẹp 100A thép"
+và nhạc lời Việt (đã thay).
+- ✅ 26 Kẹp ắc quy 75A = `20241222_163015000_iOS.MOV` (`1Iej3cwprHg3_groImIHCC6miC0StaFGB`)
+- ✅ 27 Kẹp ắc quy 50A = `20241222_163056000_iOS.MOV` (`1J1RSawsohudapZwkxctdXyIPupHP1Kh_`)
+- ✅ 28 Kẹp 100A thép = `20241222_163138000_iOS.MOV` (`1GXz2SGQOoYKevN_LwO-zbUH3YjNZB0us`)
+- ✅ 29 Hộp ABS 170x70 khoan sẵn CNC = `20250108_075442000_iOS.MOV` (`1VO6nRGzHFM9Dd-tuedVU35gqn9Bocv_Q`; thông tin từ lời đọc gốc)
+- ✅ 30 Vít nhọn M4 15–40mm = `1117(2).mp4` (`1wqYbz_f70p1GkHkuIGDZFoyTgzEnh5pZ`)
+- ✅ 31 Hộp nhựa xanh nắp trong = `202505021714.mp4` (`1wt9Nyx2SafzONBJzxD7Bn2mqM-yq-v8Z`)
+- ✅ 32 Hộp nhựa đen 78x50x30 = `202505021633.mp4` (`1URlGqV1ECdY1jgDe9m1tmyCjWbDzhHN1`)
+- ✅ 33 Hộp nhựa đen có tai bắt vít = `202505021630.mp4` (`1DtvFzGAMUo98hjnBwKRezfcgAV_Okdfr`)
+- ✅ 34 Nhôm tản nhiệt thanh dài (trên cỏ) = `202601151430 (1) (1).mp4` (`1yg2rfJAGWK-CPmEIofKQLKdLk23nWyIu`)
+- ✅ 35 Phích cắm P3000W = thư mục 2 › DÂN DỤNG › `01.IMG_P3000W-G1.mp4` (`1H1e5pyUTpgsA7NA0bJ2eH2gWPB21OpeD`)
+- ⛔ Bỏ qua: iOS 021057 / 021259 (túi kẹp, không rõ loại), `Anh Thanh đội xốp fam.MOV` (không có sản phẩm),
+  `202504291607.mp4` (trùng video 20), `20260116-162217.mp4` (trùng video 19), `20260422-100345.mp4` (7s),
+  thư mục 2 › `R19-16A.mp4` (quảng cáo SOPOKA đã dựng xong).
