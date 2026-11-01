@@ -1,0 +1,3 @@
+# Hook.
+Cần lấy tụ số lượng? | Cần lấy tụ số lượng?
+Hàng sẵn nhiều đây! | Hàng sẵn nhiều đây!

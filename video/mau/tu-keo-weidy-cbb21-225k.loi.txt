@@ -1,0 +1,8 @@
+# Lời đọc TỤ KẸO WEIDY CBB21 225K 630V (clip p3/t-225k-630v, 43.7s; clip có sẵn giọng máy của shop, tắt bằng --nen-am-luong 0; thước kẹp: thân dài ~32.9mm).
+Tụ kẹo nâu đỏ WEIDY CBB21, mã 225K, 630V. | Tụ kẹo nâu đỏ Uây đi, xê bê bê hai mốt, mã hai hai năm ca, sáu trăm ba mươi vôn.
+@6 Mã 225K nghĩa là 2,2µF, chữ K là sai số 10%. | Mã hai hai năm ca nghĩa là hai phẩy hai micro fa ra, chữ ca là sai số mười phần trăm.
+@12.5 Đo thực tế bằng thước kẹp, thân dài khoảng 33mm. | Đo thực tế bằng thước kẹp, thân dài khoảng ba mươi ba li.
+@19 Đo cả bề dày, chiều cao, biết trước có vừa mạch không.
+@25.5 Tụ không phân cực, cắm chiều nào cũng được.
+@33 Vỏ nâu đỏ bọc kín, hai chân dài, dễ hàn.
+@39.1 | Cần tụ kẹo hai phẩy hai micro, anh em ghé Linh Kiện Quỳnh Diễn nhé.

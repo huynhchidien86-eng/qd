@@ -1,0 +1,3 @@
+# Hook.
+Máy bơm đề không lên?
+Kiểm tra tụ, thay 25µF! | Kiểm tra tụ, thay hai lăm micro!

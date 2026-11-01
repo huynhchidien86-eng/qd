@@ -1,0 +1,38 @@
+[Script Info]
+; Kẹp cá sấu cỡ lớn (p3/d-kep-ca-sau-6550010194216, 63.8s)
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Thương hiệu cố định góc trên
+Style: Brand,DejaVu Sans,38,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,14,0,8,40,40,70,1
+; Tiêu đề lớn: chữ vàng viền đen
+Style: Title,DejaVu Sans,70,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,260,1
+; Ý chính: chữ trắng trên nền đen mờ
+Style: Point,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,22,0,8,70,70,260,1
+; Kết nhẹ nhàng: tên shop mờ dần trượt lên, gạch xanh mảnh, dòng phụ nhỏ
+Style: Soft,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,1,0,1,0,4,5,40,40,0,1
+Style: Soft2,DejaVu Sans,44,&H00C8F0FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,0,3,5,40,40,0,1
+Style: Line,DejaVu Sans,20,&H0026B522,&H0026B522,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+; Lời kêu gọi cuối (kiểu cũ, không dùng)
+Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:59.10,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
+Dialogue: 1,0:00:00.30,0:00:04.50,Title,,0,0,0,,{\fad(300,200)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}KẸP CÁ SẤU\NCỠ LỚN
+Dialogue: 1,0:00:06.00,0:00:10.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Vỏ nhựa mềm bọc kín ✔
+Dialogue: 1,0:00:12.00,0:00:16.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Đủ màu đỏ · đen ✔
+Dialogue: 1,0:00:18.00,0:00:23.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Ngàm có răng, cắn chắc ✔
+Dialogue: 1,0:00:27.00,0:00:31.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Lò xo khỏe, mở rộng ✔
+Dialogue: 1,0:00:36.00,0:00:41.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Thân kẹp\N{\c&H0000D7FF&}~44mm
+Dialogue: 1,0:00:47.50,0:00:52.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Cả vỏ\N{\c&H0000D7FF&}~52mm
+Dialogue: 1,0:00:53.50,0:00:58.50,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Kẹp được đầu dây to ✔
+Dialogue: 1,0:00:59.10,0:01:07.30,Line,,0,0,0,,{\an7\pos(0,0)\c&H000000&\1a&HFF&\t(0,700,\1a&H70&)\p1}m 0 0 l 1080 0 l 1080 1920 l 0 1920{\p0}
+Dialogue: 2,0:00:59.30,0:01:07.30,Soft,,0,0,0,,{\an5\fad(700,300)\move(540,1430,540,1395,0,700)}Linh Kiện Quỳnh Diễn
+Dialogue: 2,0:00:59.60,0:01:07.30,Line,,0,0,0,,{\an5\pos(540,1462)\fad(600,300)\fscx0\t(0,700,\fscx100)\p1}m 0 0 l 360 0 l 360 5 l 0 5{\p0}
+Dialogue: 2,0:00:59.90,0:01:07.30,Soft2,,0,0,0,,{\an5\fad(700,300)\move(540,1525,540,1500,0,700)}Kẹp cá sấu cỡ lớn

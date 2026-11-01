@@ -1,0 +1,3 @@
+# Hook.
+Chọn tụ bao nhiêu µF? | Chọn tụ bao nhiêu micro?
+Đủ 20, 25, 30µF đây! | Đủ hai mươi, hai lăm, ba mươi đây!
