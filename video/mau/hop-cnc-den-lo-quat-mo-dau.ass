@@ -16,7 +16,7 @@ Style: Small,DejaVu Sans,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 1,0:00:00.00,0:00:01.30,Pain,,0,0,0,,{\pos(540,820)\t(0,120,\fscx118\fscy118)\t(120,260,\fscx100\fscy100)}TỰ KHOAN LỖ QUẠT?
+Dialogue: 1,0:00:00.00,0:00:01.30,Pain,,0,0,0,,{\pos(540,820)\t(0,120,\fscx118\fscy118)\t(120,260,\fscx100\fscy100)}TỰ KHOAN\NLỖ QUẠT?
 Dialogue: 1,0:00:01.30,0:00:02.55,Pain,,0,0,0,,{\pos(540,820)\t(0,120,\fscx118\fscy118)\t(120,260,\fscx100\fscy100)}SỢ NỨT HỘP?
 Dialogue: 2,0:00:02.55,0:00:05.20,Small,,0,0,0,,{\pos(540,700)\fad(100,0)}KHOÉT SẴN BẰNG
 Dialogue: 2,0:00:02.60,0:00:05.20,Big,,0,0,0,,{\pos(540,860)\t(0,150,\fscx130\fscy130)\t(150,350,\fscx100\fscy100)}CNC
