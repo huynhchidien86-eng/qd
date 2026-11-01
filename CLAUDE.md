@@ -164,6 +164,15 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Video không có mô tả: lời đọc/chữ **chỉ nói điều thấy trong video hoặc người trong video nói**; số đo
   đọc không rõ thì không ghi số. Video đã edit sẵn có lời đọc gốc của shop: lấy thông tin từ lời đó.
   Mỗi video có `video/mau/<sp>-mo-dau.{ass,loi.txt}`; lệnh dựng xem commit "Làm lại 3 video".
+- **Thư mục video + ảnh thô thứ 2** (anh gửi 01/11): Drive folder `1QJFZkPZ3CNZeW3pEtAn0IhuPWe4c6Wfs`
+  (link https://drive.google.com/drive/folders/1QJFZkPZ3CNZeW3pEtAn0IhuPWe4c6Wfs), chia theo nhóm hàng:
+  - `ĐÓNG CẮT & KẾT NỐI` `1v4cMxYI-gvAqRUX6ifgk7ylXAsQKFW4j` (thư mục con: Cò Bóp, Dây Bus…)
+  - `VẬT LIỆU CÁCH ĐIỆN & CHỊU NHIỆT` `1mtZGURWDcG860jc5c9BpiD5suQG3wK6h` (con: Giấy Cách Điện…)
+  - `THIẾT BỊ & PHỤ KIỆN ĐIỆN DÂN DỤNG` `1I1VpE953j0pfN0I7fe7ZuuIs4hATKBmu`: ~100 file đánh số 01–32 (số = mã
+    sản phẩm), mỗi số có .MOV gốc + .mp4 nhẹ + ảnh JPG. Dùng bản .MOV gốc. Số 02 = ổ cắm SOPOKA 6000W (đã làm).
+  - `HỘP NHỰA` `1oGE3oLlNjd3tHldxAO6sfROPNcosmqEp` (con: WANCHI…)
+  - `CÁC LOẠI TỤ` `1YIldSPTEOxbN2NkaWeiusGdObifL5-vQ`
+  Liệt kê bằng Drive connector (`parentId = '<id>'`, kết quả dài thì đọc file JSON bằng python).
 - **Thư mục video chính để "làm dần"**: `MAKETING/AFFILIATE HÀNG TOP/VIDEO THÔ` (đổi tên từ "VIDEO Tiep thi" 31/10; đã chia sẻ).
   Danh sách + mã Drive + trạng thái: `video/danh-sach-tiep-thi.md`. Làm xong video nào thì
   đánh dấu ✅ ở đó. Video quay ngang 4K: dùng `--day-khung` (cắt đầy khung dọc).
