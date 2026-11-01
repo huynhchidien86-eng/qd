@@ -355,24 +355,27 @@ def make_hook_cut(src, args, ass, dst, tmp):
     graph = []
     for i, t in enumerate(times):
         # Zoom giật: 1.22 -> 1.0 trong 0.35s đầu mỗi cảnh.
-        graph.append(f"[0:v]trim=start={t}:duration={seg:.3f},setpts=PTS-STARTPTS,"
+        graph.append(f"[{i}:v]trim=duration={seg:.3f},setpts=PTS-STARTPTS,"
                      f"{f + ',' if f else ''}"
                      f"zoompan=z='max(1,1.22-0.63*it)':d=1:fps=30:s={out_w}x{out_h}"
                      f":x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2',setsar=1[c{i}]")
     graph.append("".join(f"[c{i}]" for i in range(len(times)))
                  + f"concat=n={len(times)}:v=1:a=0,eq=contrast=1.08:saturation=1.15,"
                  f"subtitles='{escape_filter_path(ass)}',format=yuv420p[v]")
-    inputs = ["-i", src]
+    # Mỗi cảnh một đầu vào tua sẵn (-ss): dùng chung 1 đầu vào thì ffmpeg phải giữ hết khung hình
+    # chờ cảnh sau (cảnh ở giây 77 trên clip 1080p từng làm tràn bộ nhớ, ffmpeg bị kill).
+    inputs = [x for t in times for x in ("-ss", f"{t}", "-t", f"{seg + 0.5:.3f}", "-i", str(src))]
+    n = len(times)
     hits = [(i * seg, "whoosh" if i == 0 else "pop") for i in range(len(times))]
     mix = []
     for i, (t, k) in enumerate(hits):
         inputs += ["-i", sfx_file(k)]
-        graph.append(f"[{i + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
+        graph.append(f"[{n + i}:a]aformat=sample_rates=48000:channel_layouts=stereo,"
                      f"adelay={int(t * 1000)}|{int(t * 1000)}[s{i}]")
         mix.append(f"[s{i}]")
     if args.mo_dau_giong:
         inputs += ["-i", hv]
-        graph.append(f"[{len(hits) + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,{VOICE_FX}[hv]")
+        graph.append(f"[{n + len(hits)}:a]aformat=sample_rates=48000:channel_layouts=stereo,{VOICE_FX}[hv]")
         mix.append("[hv]")
     graph.append(f"anullsrc=r=48000:cl=stereo,atrim=duration={total:.3f}[sil]")
     graph.append(f"[sil]{''.join(mix)}amix=inputs={len(mix) + 1}:duration=first:normalize=0,"
