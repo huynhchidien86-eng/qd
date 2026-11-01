@@ -30,15 +30,15 @@ Nhiều file là bản trùng (cùng dung lượng) hoặc video đã edit sẵn
 - `... M3x20mm.mov` — `1TOFiXlbLNTdSrwZHabnNO5PsaRX3EN0G`
 - `... M3x20mm (1).mov` — `1fU_ZxG9yxtjmk4jgUiwERHNMTp0gN0Rl`
 - `bulong ốc vít_ốc ren mịn đầu dù M4x10mm.MOV` — `1HnVqkrCOKcswVMt-QuFuoIosixl28PPW`
-- `bulong M6x100mm kèm tán.mp4` — `1oB3foyvRFpbjHrp8FgJftMQQghJ-Qc6_`
+- ✅ `bulong M6x100mm kèm tán.mp4` — `1oB3foyvRFpbjHrp8FgJftMQQghJ-Qc6_` → 10 (đã có nhạc gốc: thay bằng giọng đọc)
 - `bulong M6x120mm kèm tán.mp4` — `116kwpYF3Nf5vgReV3TXoILOl2W0zHOvp`
 
 ## Tản nhiệt / quạt (⏳ chờ mô tả)
-- `200x120x75 IGBT Wanchi Quạt Bên ( Đen Nắp Trong).mp4` — `1ccOwAXZsSOSUoPNwbYB_xusvngxPu1Jr`
+- ✅ `200x120x75 IGBT Wanchi Quạt Bên ( Đen Nắp Trong).mp4` — `1ccOwAXZsSOSUoPNwbYB_xusvngxPu1Jr` → 06 (người nói thật)
 - `200x120x75 IGBT Wanchi Quạt Bên ( Trắng Nắp Trong).mp4` — `1g9sUoIABmzDtKrwQ7M3Jtm0SWa_F7ofy`
-- `168x92x56 Wanchi.mp4` — `1WnJAaL6STVLqiYl1QcVzDM219PkdvWZT`
+- ✅ `168x92x56 Wanchi.mp4` — `1WnJAaL6STVLqiYl1QcVzDM219PkdvWZT` → 07 (người nói thật)
 - `168x92x56 Volume Wanchi.mp4` — `1a0iCdFNYUqMbtZ4S3A3fBhMNXxx1tN6b`
-- `130x68x44.mp4` — `1VnvMuto4hdXz3DvWBxnJvq1iXcrrfbir`
+- ✅ `130x68x44.mp4` — `1VnvMuto4hdXz3DvWBxnJvq1iXcrrfbir` → 08 (hộp Wanchi đen; giọng đọc)
 - `2 tầng 7 cánh.mp4` — `1tirOD0WpqimOYX6caoKzaT-VHN0kidQL` (trùng `2 tầng 7 cánh (1).mp4` `1dfIfMYR5mHHa2k0L2JE5i2tESLyfh6sn`)
 - `2 tầng 10 canh.mp4` — `1R-yqT1t7f3yTXbC_SUJ3BF_jSkXdnQY7`
 - `8 cánh nhỏ 5 tấc (tiktok).mp4` — `1zLQunVmFPgnZFiAU7vSH86FMPb2VYjl5` (210 MB)
@@ -52,7 +52,7 @@ Nhiều file là bản trùng (cùng dung lượng) hoặc video đã edit sẵn
 - `5 mẹo chọn tụ điện đúng chuẩn trong 15 giây.mp4` — `11txSCHSYkYokF2-2YpykJSZHhO1TqApM` (có thể đã edit)
 
 ## Khác (▫️ chưa xem)
-- `bien ap 12A.mp4` — `1VLeuUBMmQe4mR45QEJMV5GhtVark3JkR`
+- ✅ `bien ap 12A.mp4` — `1VLeuUBMmQe4mR45QEJMV5GhtVark3JkR` → 09 (video đã edit sẵn có giọng máy + sticker: thay âm thanh)
 - `40T120.MOV` — `11bs4_a1XaCrsznFl8XNGX70rjNqjlN1h`
 - `10A4.mp4` — `1CvbDLYcLhx7TucBwAgNI8S_iLlmXAXrM`
 - `240-6.mp4` — `10-Mj0-tvsWoFcW7EMyKd8m-ojhG8aLSM` (trùng `240-6 (1).mp4`)

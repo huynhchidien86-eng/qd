@@ -1,0 +1,22 @@
+[Script Info]
+; Mở đầu video bulong M6x100.
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Câu nói nỗi lo: chữ trắng trên hộp đỏ
+Style: Pain,DejaVu Sans,84,&H00FFFFFF,&H00FFFFFF,&H002020E0,&H002020E0,1,0,0,0,100,100,0,0,3,26,0,5,50,50,0,1
+; Câu giải pháp: chữ vàng rất to, viền đen dày
+Style: Big,DejaVu Sans,150,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,10,4,5,40,40,0,1
+Style: Small,DejaVu Sans,72,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,6,3,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.00,0:00:01.30,Pain,,0,0,0,,{\pos(540,820)\t(0,120,\fscx118\fscy118)\t(120,260,\fscx100\fscy100)}THIẾU MỘT CON ỐC?
+Dialogue: 1,0:00:01.30,0:00:02.75,Pain,,0,0,0,,{\pos(540,820)\t(0,120,\fscx118\fscy118)\t(120,260,\fscx100\fscy100)}ĐỨNG CẢ VIỆC!
+Dialogue: 2,0:00:02.75,0:00:05.80,Small,,0,0,0,,{\pos(540,700)\fad(100,0)}BULONG M6
+Dialogue: 2,0:00:02.80,0:00:05.80,Big,,0,0,0,,{\pos(540,860)\t(0,150,\fscx130\fscy130)\t(150,350,\fscx100\fscy100)}100mm

@@ -139,6 +139,13 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   anh là mất (nhưng làm lại được từ repo vì lệnh + mẫu đã lưu).
 - Đã gửi bản cuối: 01 Fe silic EI, 02 Ổ cắm SOPOKA 6000W, 03 Tụ CBB 60uF, 04 Ống gen sợi thủy tinh,
   05 Hộp nhựa WANCHI KW-CN-170. Cả 5 đã theo kiểu mở đầu cuốn + kết nhẹ nhàng (01–03 làm lại 31/10).
+  Ngày 01/11 làm thêm 06–10 từ VIDEO THÔ: 06 Hộp WANCHI 200x120x75 IGBT, 07 Hộp WANCHI 168x92x56 (2 video
+  người nói thật), 08 Hộp WANCHI 130x68x44, 09 Biến áp âm ly 12A 35V đôi, 10 Bulong M6x100 kèm tán (giọng
+  đọc, tắt tiếng gốc bằng `--nen-am-luong 0`). Mẫu `video/mau/<tên>.*`; lệnh trong commit "5 video 06–10".
+- Video ngang 720p: dùng khung nền mờ (không `--day-khung`, vì cắt đầy sẽ mờ hình); chữ nổi bật đặt
+  trên, phụ đề dưới phần video.
+- Video không có mô tả: lời đọc/chữ **chỉ nói điều thấy trong video hoặc người trong video nói**; số đo
+  đọc không rõ thì không ghi số. Video đã edit sẵn có lời đọc gốc của shop: lấy thông tin từ lời đó.
   Mỗi video có `video/mau/<sp>-mo-dau.{ass,loi.txt}`; lệnh dựng xem commit "Làm lại 3 video".
 - **Thư mục video chính để "làm dần"**: `MAKETING/AFFILIATE HÀNG TOP/VIDEO THÔ` (đổi tên từ "VIDEO Tiep thi" 31/10; đã chia sẻ).
   Danh sách + mã Drive + trạng thái: `video/danh-sach-tiep-thi.md`. Làm xong video nào thì
