@@ -16,7 +16,15 @@ Nhiều file là bản trùng (cùng dung lượng) hoặc video đã edit sẵn
   `edit.py video/tho/ong-gen-2mm.mov --khung 9:16 --day-khung --chu video/mau/ong-gen-giong.ass --giong video/mau/ong-gen.loi.txt --phu-de-cao 60 --chuan-am --chop 3.8 --sfx 0.3:whoosh,3.8:ding,20.3:pop --mo-dau video/mau/ong-gen-mo-dau.ass --mo-dau-canh 3,9.5,13,19 --mo-dau-giong video/mau/ong-gen-mo-dau.loi.txt`
 - `Amiang 2mm.mp4` — `1qjlAhHVf4EI9hCGCELCaJ-w573FYtJyE` (trùng cảnh với bản .MOV)
 
-## Bulong ốc vít (⏳ chờ mô tả)
+## Bulong ốc vít (làm 01/11, không có mô tả)
+Lưu ý: nhiều file trùng hệt nhau dù tên khác (cùng dung lượng): 88650209 B = "M3x10.MOV" = "M3x12 (4)" = "M3x20.mov";
+77103873 B = "M3x10 (2)" = "M3x20 (1)"; 74479807 B = "M3x10 (1)" = "M3x12 (3)"; 85501505 B = "M3x10 (3)" = "M3x12 (2)".
+- ✅ 11 Ốc vít M3 đủ size = ghép 5 clip bốc ốc trong túi (M3x10.MOV, M3x10 (1), M3x12 (1), M3x10 (3), M3x10 (2)) → `video/tho/oc-vit-m3-du-size.mp4`
+- ✅ 12 Ốc vít M3x12 kèm tán = `M3x12mm.MOV` (`1BlIBGYM_7V2WpDSItL7ffTsrqYPJzBK7`, 4K, có đo)
+- ✅ 13 Ốc vít M3x15 kèm tán = `M3x15mm.MOV` (4K, có đo)
+- ✅ 14 Ốc M4x10 đầu dù = `ốc ren mịn đầu dù M4x10mm.MOV` (có đo)
+- ✅ 15 Bulong M6x120 kèm tán = `bulong M6x120mm kèm tán.mp4`
+
 - `bulong ốc vít_ốc vít + tán M3x10mm.MOV` — `16kGwqUsebf93jRROiUHOo1Rjo9n7qAsS`
 - `... M3x10mm (1).MOV` — `1yudwv8yrYJGkyQbLWY-CRcpZuLR35rIh`
 - `... M3x10mm (2).MOV` — `1QjWlw-NMIgAacabjuGAvuCIdwquNerpQ`

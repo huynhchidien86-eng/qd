@@ -148,6 +148,9 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   hết bộ nhớ, tiến trình bị kill). Dựng nhiều video dài thì chạy nền (`run_in_background`).
 - **File trùng tên khác nhau trong VIDEO THÔ**: nhiều file bulong cùng dung lượng đến từng byte nhưng tên
   khác (vd "M3x10.MOV" = "M3x12 (4).mov" = "M3x20.mov"). Xem nội dung, không tin tên file.
+- 01/11 làm thêm 11–15 (bulong/ốc vít, giọng đọc, tắt tiếng gốc): 11 Ốc M3 đủ size (ghép 5 clip), 12 M3x12,
+  13 M3x15, 14 M4x10 đầu dù, 15 M6x120. Mẫu `video/mau/oc-vit-*`, `oc-m4x10-dau-du*`, `bulong-m6x120*`.
+  Số đo thước kẹp không rõ đo phần nào thì không đọc số (chỉ M6x120 ghi "thân dài 120mm" vì thấy rõ trên thước).
 - Video ngang 720p: dùng khung nền mờ (không `--day-khung`, vì cắt đầy sẽ mờ hình); chữ nổi bật đặt
   trên, phụ đề dưới phần video.
 - Video không có mô tả: lời đọc/chữ **chỉ nói điều thấy trong video hoặc người trong video nói**; số đo
