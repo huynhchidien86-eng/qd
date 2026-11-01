@@ -170,6 +170,10 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   Drive id ảnh theo thư mục `tools/lenh/anh-ids/`). Ảnh AI (Gemini/ChatGPT), banner nhiều chữ, ảnh shop khác: bỏ. Tụ khởi động,
   gen co nhiệt, giấy cách điện, tụ bếp từ/kẹo: gần như không có ảnh thật. Bỏ "h-vy-anh.mov" (video nội bộ có thông tin khách).
   Clip/ảnh thô Drive coi như ĐÃ DÙNG HẾT: đợt sau cần anh quay thêm.
+- **Phụ đề phải hiện chữ chuẩn** (SOPOKA, 3000W, 15A, 250V, 1µF), cách đọc ("Sô pô ca", "ba nghìn oát") chỉ để ở vế sau `|`.
+  Dòng lời đọc không có `|` thì phụ đề hiện y lời đọc: 01/11 phải dựng lại 17 video vì lỗi này. Rà trước khi dựng:
+  `grep -n "^[^|#]*\(oát\|am pe\|vôn\|Sô pô\|Uan chi\|micro\)" video/mau/*.loi.txt | grep -v mo-dau`.
+- Ảnh có chữ in sẵn ở phần dưới (vd "2 CON") thì nâng phụ đề: thêm `--phu-de-cao 430`.
 - Lưu lệnh dựng mỗi đợt thành script trong `tools/lenh/` để phiên sau chạy lại được.
 - Câu kết dạng `@giây | lời`: chỉ MỘT dấu `|` (viết 2 dấu thì trước đây máy đọc câu kết 2 lần; nay
   `giong_doc.py` chỉ đọc vế cuối).

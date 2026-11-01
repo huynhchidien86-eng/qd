@@ -35,7 +35,7 @@ v anh/anh-tu-mb-tinh-chi-day-cos.mp4 anh-tu-mb-tinh-chi-day-cos 2.7,7.7,12.7,17.
 v anh/anh-tu-mb-tinh-chi-du-loai.mp4 anh-tu-mb-tinh-chi-du-loai 2.7,7.7,12.7,17.7 "0.3:whoosh,5.1:pop,10.1:pop,15.1:pop" running-night.mp3 0.097 "153 Tu Tinh Chi du loai 10-30uF - anh.mp4"
 v anh/anh-so-nhiet-ksd301-tren-tay.mp4 anh-so-nhiet-ksd301-tren-tay 2.5,7.5,17.5,22.7 "0.3:whoosh,5:pop,10:pop,15:pop" pop-rock-quang-cao.mp3 0.148 "154 So nhiet KSD301 tren tay - anh.mp4"
 v anh/anh-so-nhiet-ksd301-can-canh.mp4 anh-so-nhiet-ksd301-can-canh 2.2,6.7,11.2,20.2 "0.3:whoosh,4.5:pop,9:pop,13.5:pop,18:pop" running-night.mp3 0.097 "155 So nhiet KSD301 can canh - anh.mp4"
-v anh/anh-so-nhiet-ksd301-60-180-do.mp4 anh-so-nhiet-ksd301-60-180-do 2.2,11.2,15.7,24.7 "0.3:whoosh,4.5:pop,9:pop,13.5:pop,18:pop" promotion.mp3 0.098 "156 So nhiet KSD301 60-180 do - anh.mp4"
+v anh/anh-so-nhiet-ksd301-60-180-do.mp4 anh-so-nhiet-ksd301-60-180-do 2.2,11.2,15.7,24.7 "0.3:whoosh,4.5:pop,9:pop,13.5:pop,18:pop" promotion.mp3 0.098 "156 So nhiet KSD301 60-180 do - anh.mp4" "--phu-de-cao 430"
 v anh/anh-cau-chi-tu-ngat-du-dong.mp4 anh-cau-chi-tu-ngat-du-dong 2.5,7.5,12.5,17.5 "0.3:whoosh,5:pop,10:pop,15:pop" moodmode.mp3 0.153 "157 Cau chi tu ngat du dong - anh.mp4"
 v anh/anh-co-bop-tiep-diem-dong.mp4 anh-co-bop-tiep-diem-dong 2.2,11.2,15.7,24.7 "0.3:whoosh,4.5:pop,9:pop,13.5:pop,18:pop" vlog-beat.mp3 0.09 "158 Co bop tiep diem dong - anh.mp4"
 v anh/anh-kep-ca-sau-tui-10-doi.mp4 anh-kep-ca-sau-tui-10-doi 2.2,6.7,11.2,24.7 "0.3:whoosh,4.5:pop,9:pop,13.5:pop,18:pop" inspiring-acoustic.mp3 0.112 "159 Kep ca sau tui 10 doi - anh.mp4"
