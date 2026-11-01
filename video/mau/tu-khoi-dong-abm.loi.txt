@@ -1,0 +1,10 @@
+# Lời đọc TỤ KHỞI ĐỘNG ABM/ABC (chỉ điều thấy trên nhãn/trong hình).
+Tụ khởi động động cơ, đủ trị số từ 100 đến 800µF. | Tụ khởi động động cơ, đủ trị số từ một trăm đến tám trăm micro fa ra.
+@4 Loại 100µF, điện áp 250V xoay chiều. | Loại một trăm micro fa ra, điện áp hai trăm năm mươi vôn xoay chiều.
+@8 Loại 300µF, thân to, cầm chắc tay. | Loại ba trăm micro fa ra, thân to, cầm chắc tay.
+@12 Đầu có hai cọc, cắm dây tiện lợi.
+@16 Vỏ nhựa xám, đáy kín gọn gàng.
+@22.5 Loại 800µF, trị số lớn nhất trong bộ. | Loại tám trăm micro fa ra, trị số lớn nhất trong bộ.
+@29 Nhãn ghi rõ tiêu chuẩn Đài Loan.
+@34 Và loại 400µF, cùng điện áp 250V. | Và loại bốn trăm micro fa ra, cùng điện áp hai trăm năm mươi vôn.
+@40.5 | Cần tụ khởi động, anh em ghé Linh Kiện Quỳnh Diễn nhé.

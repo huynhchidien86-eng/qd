@@ -1,0 +1,9 @@
+# Lời đọc TỤ KẸO CBB22 nhiều mã (chỉ điều thấy trên nhãn/trong hình).
+Tụ kẹo CBB22, hàng mới, có nhiều mã. | Tụ kẹo xê bê bê hai hai, hàng mới, có nhiều mã.
+@5 Loại 1µF 630V, nhãn in rõ ràng. | Loại một micro fa ra, sáu trăm ba mươi vôn, nhãn in rõ ràng.
+@12 Có cả loại 1µF 400V. | Có cả loại một micro fa ra, bốn trăm vôn.
+@19 Vỏ bọc đỏ bóng, gọn nhỏ.
+@26 Chân kim loại dài, dễ uốn, dễ hàn lên mạch.
+@33 Hàng có sẵn số lượng lớn.
+@39 Thêm loại 2.2µF 630V cho mạch cần trị số lớn hơn. | Thêm loại hai phẩy hai micro fa ra, sáu trăm ba mươi vôn, cho mạch cần trị số lớn hơn.
+@49 | Cần tụ kẹo xê bê bê hai hai, anh em ghé Linh Kiện Quỳnh Diễn nhé.
