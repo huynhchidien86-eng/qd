@@ -165,6 +165,11 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - Cách làm đợt lớn: mỗi nhóm clip giao 1 subagent viết mẫu theo `tools/lenh/huong-dan-mau.md`, phiên chính dựng
   tuần tự (máy 4 nhân, ~5–8 phút/video). Video có người nói thật mà nói "amiang" thì cắt đúng chữ đó bằng `--bo`
   (lấy mốc bằng Whisper word_timestamps); phụ đề lời thật có "chống cháy/không cháy" thì bỏ dòng đó (không sửa lời).
+- 01/11 đợt 3 (anh chọn "clip còn lại + ảnh" vì clip thô đã gần hết): **video 136–188** (lệnh `tools/lenh/dung-136-188.sh`):
+  10 từ clip còn lại (`tools/lenh/p3-list.txt`) + 43 video ghép ảnh (`video/tho/anh/`, cách làm `tools/lenh/huong-dan-anh.md`,
+  Drive id ảnh theo thư mục `tools/lenh/anh-ids/`). Ảnh AI (Gemini/ChatGPT), banner nhiều chữ, ảnh shop khác: bỏ. Tụ khởi động,
+  gen co nhiệt, giấy cách điện, tụ bếp từ/kẹo: gần như không có ảnh thật. Bỏ "h-vy-anh.mov" (video nội bộ có thông tin khách).
+  Clip/ảnh thô Drive coi như ĐÃ DÙNG HẾT: đợt sau cần anh quay thêm.
 - Lưu lệnh dựng mỗi đợt thành script trong `tools/lenh/` để phiên sau chạy lại được.
 - Câu kết dạng `@giây | lời`: chỉ MỘT dấu `|` (viết 2 dấu thì trước đây máy đọc câu kết 2 lần; nay
   `giong_doc.py` chỉ đọc vế cuối).
