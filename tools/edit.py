@@ -555,6 +555,16 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         cur = src
+        w0, h0 = video_size(src)
+        if max(w0, h0) > 2200:
+            # Video 4K: thu về 1080p trước (khung xuất ra cũng chỉ 1080x1920), tránh hết bộ nhớ.
+            proxy = tmp / "proxy.mp4"
+            run(["ffmpeg", "-y", "-v", "error", "-i", src, "-vf",
+                 "scale='if(gt(iw,ih),1920,1080)':'if(gt(iw,ih),1080,1920)':force_original_aspect_ratio=decrease,"
+                 "scale=trunc(iw/2)*2:trunc(ih/2)*2",
+                 "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-c:a", "aac", "-b:a", "192k", proxy])
+            cur = proxy
+            print(f"Video {w0}x{h0}: đã thu về 1080p để dựng")
         cuts, speeds = parse_ranges(args.bo), parse_ranges(args.tua, True)
         if args.cat_ngap:
             keep = speeds + [(a_, b_, 1) for a_, b_, *_ in args.zoom_list]  # không cắt đoạn tua/zoom

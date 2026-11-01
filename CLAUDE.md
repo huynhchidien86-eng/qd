@@ -24,6 +24,8 @@ Muốn bổ sung: anh sửa trực tiếp file này, hoặc bảo em "ghi vào b
 - Cấu trúc thư mục:
   - `tools/edit.py`: script edit chính (xem `python3 tools/edit.py -h`).
   - `tools/giong_doc.py`: tạo giọng đọc + phụ đề khớp từ file lời đọc `.txt`.
+  - `tools/tao_mau.py`: tạo nhanh file chữ `.ass` (chữ nổi bật + khung kết nhẹ nhàng, mở đầu cuốn) và
+    phụ đề `.srt` theo phong cách đã chốt: `chu_chinh()`, `chu_mo_dau()`, `phu_de()`.
   - `tools/anh_video.py`: ghép nhiều ảnh thành video dọc (zoom/lia chậm + chuyển cảnh),
     rồi đưa vào `edit.py` để thêm chữ, giọng đọc, hiệu ứng như video thường.
   - `video/mau/`: mẫu chữ (`.ass`) và lời đọc (`.loi.txt`) theo từng sản phẩm.
@@ -142,6 +144,10 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   Ngày 01/11 làm thêm 06–10 từ VIDEO THÔ: 06 Hộp WANCHI 200x120x75 IGBT, 07 Hộp WANCHI 168x92x56 (2 video
   người nói thật), 08 Hộp WANCHI 130x68x44, 09 Biến áp âm ly 12A 35V đôi, 10 Bulong M6x100 kèm tán (giọng
   đọc, tắt tiếng gốc bằng `--nen-am-luong 0`). Mẫu `video/mau/<tên>.*`; lệnh trong commit "5 video 06–10".
+- Video 4K: `edit.py` tự thu về 1080p trước khi dựng (trước đó phần mở đầu cắt 4 cảnh từ 4K làm máy
+  hết bộ nhớ, tiến trình bị kill). Dựng nhiều video dài thì chạy nền (`run_in_background`).
+- **File trùng tên khác nhau trong VIDEO THÔ**: nhiều file bulong cùng dung lượng đến từng byte nhưng tên
+  khác (vd "M3x10.MOV" = "M3x12 (4).mov" = "M3x20.mov"). Xem nội dung, không tin tên file.
 - Video ngang 720p: dùng khung nền mờ (không `--day-khung`, vì cắt đầy sẽ mờ hình); chữ nổi bật đặt
   trên, phụ đề dưới phần video.
 - Video không có mô tả: lời đọc/chữ **chỉ nói điều thấy trong video hoặc người trong video nói**; số đo
