@@ -1,5 +1,5 @@
 # Lời đọc TỤ KẸO CBB22 105J 630V (chỉ điều thấy trên nhãn/trong hình).
-Tụ kẹo CBB22, một micro fa ra, 630V. | Tụ kẹo xê bê bê hai hai, một micro fa ra, sáu trăm ba mươi vôn.
+Tụ kẹo CBB22, 1µF, 630V. | Tụ kẹo xê bê bê hai hai, một micro fa ra, sáu trăm ba mươi vôn.
 @6 Đổ ra cả nắm, có sẵn số lượng lớn.
 @12.5 Nhãn in rõ: 105J 630V. | Nhãn in rõ: một không năm giê, sáu trăm ba mươi vôn.
 @19 Vỏ đỏ bóng, chân dài, dễ hàn.
