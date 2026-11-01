@@ -5,4 +5,5 @@ Phích cắm và ổ nối Sô pô ca, có màu cam và màu trắng.
 @21 Phích trắng mã P3000W-TH, siêu chịu tải 3000W. | Phích trắng mã P ba nghìn oát tê hát, siêu chịu tải ba nghìn oát.
 @27 Ổ nối ghi 15A, 250V. | Ổ nối ghi mười lăm am pe, hai trăm năm mươi vôn.
 @33 Cắm phích vào ổ nối khít, nối dây nhanh gọn.
+@40 Cam với cam, trắng với trắng, dễ phân biệt từng đường dây.
 @46.5 | Cần phích cắm, ổ nối tốt, anh em ghé Linh Kiện Quỳnh Diễn nhé.
