@@ -1,0 +1,40 @@
+[Script Info]
+; Chữ ỐNG GEN SỢI THỦY TINH, clip g-7643 (dọc, quay từ trên bàn gỗ). Góc: hàng mới mở bọc. Không dùng tên gọi cũ của hàng (chất độc).
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+; Thương hiệu cố định góc trên
+Style: Brand,DejaVu Sans,38,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,14,0,8,40,40,70,1
+; Tiêu đề lớn: chữ vàng viền đen
+Style: Title,DejaVu Sans,70,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,7,3,8,60,60,260,1
+; Ý chính: chữ trắng trên nền đen mờ
+Style: Point,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,22,0,8,70,70,260,1
+; Kết nhẹ nhàng: tên shop mờ dần trượt lên, gạch xanh mảnh, dòng phụ nhỏ
+Style: Soft,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,1,0,1,0,4,5,40,40,0,1
+Style: Soft2,DejaVu Sans,44,&H00C8F0FF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,0,3,5,40,40,0,1
+Style: Line,DejaVu Sans,20,&H0026B522,&H0026B522,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+; Lời kêu gọi cuối (kiểu cũ, không dùng)
+Style: CTA,DejaVu Sans,74,&H00FFFFFF,&H00FFFFFF,&H0026B522,&H0026B522,1,0,0,0,100,100,0,0,3,26,0,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:01:14.80,Brand,,0,0,0,,LINH KIỆN QUỲNH DIỄN
+Dialogue: 1,0:00:00.30,0:00:04.50,Title,,0,0,0,,{\fad(300,200)\t(0,300,\fscx110\fscy110)\t(300,500,\fscx100\fscy100)}ỐNG GEN\NHÀNG MỚI BỌC
+Dialogue: 1,0:00:07.00,0:00:12.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Sợi dệt dày dặn ✔
+Dialogue: 1,0:00:13.00,0:00:20.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Mềm, ôm gọn trong tay
+Dialogue: 1,0:00:21.00,0:00:27.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Dẻo, bóp nắn thoải mái
+Dialogue: 1,0:00:28.00,0:00:36.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Cắt đoạn ngắn để thử ►
+Dialogue: 1,0:00:38.00,0:00:44.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Hơ lửa trực tiếp ►
+Dialogue: 1,0:00:45.00,0:00:56.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Chịu tới 600°C\N{\c&H0000D7FF&}Liên tục ~400°C
+Dialogue: 1,0:00:57.00,0:01:03.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Motor · biến áp · lò sấy
+Dialogue: 1,0:01:04.00,0:01:10.00,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Đủ size Ø2–10mm ✔
+Dialogue: 1,0:01:10.50,0:01:14.80,Point,,0,0,0,,{\fad(200,250)\t(0,200,\fscx110\fscy110)\t(200,380,\fscx100\fscy100)}Đầu ống chỉ ngả màu nhẹ
+Dialogue: 1,0:01:14.80,0:01:23.00,Line,,0,0,0,,{\an7\pos(0,0)\c&H000000&\1a&HFF&\t(0,700,\1a&H70&)\p1}m 0 0 l 1080 0 l 1080 1920 l 0 1920{\p0}
+Dialogue: 2,0:01:15.00,0:01:23.00,Soft,,0,0,0,,{\an5\fad(700,300)\move(540,1430,540,1395,0,700)}Linh Kiện Quỳnh Diễn
+Dialogue: 2,0:01:15.30,0:01:23.00,Line,,0,0,0,,{\an5\pos(540,1462)\fad(600,300)\fscx0\t(0,700,\fscx100)\p1}m 0 0 l 360 0 l 360 5 l 0 5{\p0}
+Dialogue: 2,0:01:15.60,0:01:23.00,Soft2,,0,0,0,,{\an5\fad(700,300)\move(540,1525,540,1500,0,700)}Ống gen sợi thủy tinh · Ø2–10mm
