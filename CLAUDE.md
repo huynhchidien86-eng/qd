@@ -151,6 +151,14 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
 - 01/11 làm thêm 11–15 (bulong/ốc vít, giọng đọc, tắt tiếng gốc): 11 Ốc M3 đủ size (ghép 5 clip), 12 M3x12,
   13 M3x15, 14 M4x10 đầu dù, 15 M6x120. Mẫu `video/mau/oc-vit-*`, `oc-m4x10-dau-du*`, `bulong-m6x120*`.
   Số đo thước kẹp không rõ đo phần nào thì không đọc số (chỉ M6x120 ghi "thân dài 120mm" vì thấy rõ trên thước).
+- 01/11 làm thêm 16–25 (lệnh dựng: `tools/lenh/dung-16-25.sh`): 16 Hộp Wanchi 200 trắng, 17 Hộp Wanchi 168
+  bản Volume, 20 Nhôm 8 lá dài 5 tấc, 21 Khuôn biến áp 50x100, 22 Khuôn 32x50 (5 video người nói thật);
+  18 Nhôm 2 tầng 7 cánh, 19 Nhôm 2 tầng 10 cánh, 23 Ổ cắm SOPOKA MAX 2200W (file "10A4"), 24 Nhôm thanh dài
+  (file "1108"), 25 IGBT 40T120 MagnaChip mổ thử (giọng đọc). Bỏ qua "400UF", "800uf 11", "240-6": quảng cáo
+  người dẫn AI đã dựng xong. Video 14 dựng lại vì câu kết bị đọc 2 lần.
+- Lưu lệnh dựng mỗi đợt thành script trong `tools/lenh/` để phiên sau chạy lại được.
+- Câu kết dạng `@giây | lời`: chỉ MỘT dấu `|` (viết 2 dấu thì trước đây máy đọc câu kết 2 lần; nay
+  `giong_doc.py` chỉ đọc vế cuối).
 - Video ngang 720p: dùng khung nền mờ (không `--day-khung`, vì cắt đầy sẽ mờ hình); chữ nổi bật đặt
   trên, phụ đề dưới phần video.
 - Video không có mô tả: lời đọc/chữ **chỉ nói điều thấy trong video hoặc người trong video nói**; số đo

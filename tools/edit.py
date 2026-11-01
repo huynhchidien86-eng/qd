@@ -557,11 +557,13 @@ def main():
         cur = src
         w0, h0 = video_size(src)
         if max(w0, h0) > 2200:
-            # Video 4K: thu về 1080p trước (khung xuất ra cũng chỉ 1080x1920), tránh hết bộ nhớ.
+            # Video 4K: thu nhỏ trước (khung xuất ra chỉ 1080x1920), tránh hết bộ nhớ. Video ngang cắt
+            # đầy khung dọc (--day-khung) thì giữ 1440p để phần cắt ra vẫn nét.
             proxy = tmp / "proxy.mp4"
+            big = w0 > h0 and args.day_khung
+            pw, ph = (2560, 1440) if big else ((1920, 1080) if w0 > h0 else (1080, 1920))
             run(["ffmpeg", "-y", "-v", "error", "-i", src, "-vf",
-                 "scale='if(gt(iw,ih),1920,1080)':'if(gt(iw,ih),1080,1920)':force_original_aspect_ratio=decrease,"
-                 "scale=trunc(iw/2)*2:trunc(ih/2)*2",
+                 f"scale={pw}:{ph}:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2",
                  "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-c:a", "aac", "-b:a", "192k", proxy])
             cur = proxy
             print(f"Video {w0}x{h0}: đã thu về 1080p để dựng")

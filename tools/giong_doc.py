@@ -35,6 +35,8 @@ def parse_script(path):
         if m:
             at, raw = float(m.group(1)), m.group(2)
         shown, _, spoken = raw.partition("|")
+        if "|" in spoken:  # lỡ viết thừa "|": chỉ đọc vế cuối, không đọc trùng
+            spoken = spoken.rsplit("|", 1)[1]
         lines.append({"at": at, "shown": shown.strip(), "spoken": (spoken or shown).strip()})
         # "| lời đọc" (vế trái rỗng): chỉ đọc, không hiện phụ đề.
     return lines

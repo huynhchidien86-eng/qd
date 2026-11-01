@@ -1,0 +1,9 @@
+# Lời đọc IGBT 40T120 MAGNACHIP - MỔ THỬ (không mô tả; thấy nhãn MagnaChip, đập vỏ, đo).
+IGBT 40T120 của MagnaChip, loại 40A 1200V. | I G B T bốn mươi T một hai mươi của Mắc na chíp, loại bốn mươi am pe, một nghìn hai trăm vôn.
+@6 Hôm nay mổ thử một con để xem bên trong.
+@14 Đập lớp vỏ nhựa, lộ ra đế đồng bên trong.
+@24 Nhân chip gắn chắc trên đế đồng.
+@32 Đo thực tế bằng thước kẹp cho anh em xem.
+@44 Mổ ra mới thấy rõ bên trong con sò.
+@50 Dùng nhiều trong máy hàn, bếp từ, biến tần.
+@57 | Cần I G B T bốn mươi T một hai mươi, anh em ghé Linh Kiện Quỳnh Diễn nhé.
