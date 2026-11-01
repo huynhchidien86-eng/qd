@@ -3,7 +3,7 @@
 # Bỏ 28.3–31.8 (--bo): tờ giấy ghi giá nội bộ + ngăn trống.
 Tụ Tinh Chi hộp vuông, dây đỏ đen, xếp đủ số trên kệ.
 @6.5 Mỗi ngăn dán số micro, nhìn là thấy.
-@13.5 Nhãn ghi 22µF, sai số 5%, 450 vôn xoay chiều. | Nhãn ghi hai mươi hai micro, sai số năm phần trăm, bốn trăm năm mươi vôn xoay chiều.
+@13.5 Nhãn ghi 22µF, sai số 5%, 450VAC. | Nhãn ghi hai mươi hai micro fara, sai số năm phần trăm, bốn trăm năm mươi vôn xoay chiều.
 @20.5 Hai dây đỏ đen ra sẵn, đấu nối nhanh.
 @32.3 Đây là loại 16µF, nhãn ghi chuẩn Đài Loan. | Đây là loại mười sáu micro, nhãn ghi chuẩn Đài Loan.
 @42.5 Kệ nhiều ngăn, mỗi ngăn một số.
