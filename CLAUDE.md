@@ -170,6 +170,11 @@ Chốt từ video đầu tiên (IMG_5312, Fe silic EI). Mẫu ở `video/mau/fe-
   Drive id ảnh theo thư mục `tools/lenh/anh-ids/`). Ảnh AI (Gemini/ChatGPT), banner nhiều chữ, ảnh shop khác: bỏ. Tụ khởi động,
   gen co nhiệt, giấy cách điện, tụ bếp từ/kẹo: gần như không có ảnh thật. Bỏ "h-vy-anh.mov" (video nội bộ có thông tin khách).
   Clip/ảnh thô Drive coi như ĐÃ DÙNG HẾT: đợt sau cần anh quay thêm.
+- 02/11 đợt 4: **video 189–233** (lệnh `tools/lenh/dung-189-233.sh`, Drive id `tools/lenh/p4-list.txt`): VIDEO THÔ có thêm clip
+  lõi ferrite (E42-20, E55-20, E55-40, EC60, E65-27, E70, xuyến 31/36/63mm; anh trong shop nói thật, gọi lõi là "phe than"),
+  vecni/keo Tân Phú/stato/Fe silic, sò Toshiba, mạch sạc ắc quy, vôn kế, kẹp 100A/500A… + 7 video ảnh còn lại (`anh2-*`).
+  Bỏ: quat-tan-nhiet (quảng cáo dựng sẵn), clip trùng, clip AI. Thư mục `MAKETING/MEDIA/Video Tài/VIDEO` (1DjeP…) có IMG_5650
+  (7.6GB) và IMG_5328 CHƯA chia sẻ (tải về ra trang đăng nhập). Sau đợt này clip/ảnh thô coi như hết thật.
 - **Phụ đề phải hiện chữ chuẩn** (SOPOKA, 3000W, 15A, 250V, 1µF), cách đọc ("Sô pô ca", "ba nghìn oát") chỉ để ở vế sau `|`.
   Dòng lời đọc không có `|` thì phụ đề hiện y lời đọc: 01/11 phải dựng lại 17 video vì lỗi này. Rà trước khi dựng:
   `grep -n "^[^|#]*\(oát\|am pe\|vôn\|Sô pô\|Uan chi\|micro\)" video/mau/*.loi.txt | grep -v mo-dau`.
