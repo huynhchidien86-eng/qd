@@ -1,0 +1,39 @@
+1
+00:00:01,140 --> 00:00:03,130
+Dạ, xin chào mọi người
+
+2
+00:00:02,880 --> 00:00:04,830
+Hôm nay em sẽ giới thiệu cho mọi người
+
+3
+00:00:04,580 --> 00:00:07,390
+hộp CNC IGBT của Wanchi
+
+4
+00:00:07,660 --> 00:00:10,850
+Cái này quạt nằm 1 bên nha mọi người
+
+5
+00:00:10,600 --> 00:00:13,390
+Màu này của mình là màu đen, nắp trong
+
+6
+00:00:13,900 --> 00:00:17,650
+Có kích thước là 200, 120 và 75mm
+
+7
+00:00:17,400 --> 00:00:21,370
+Bây giờ em sẽ đo kích thước thực tế cho mọi người xem tham khảo nha
+
+8
+00:00:28,350 --> 00:00:30,000
+Quạt này của mình vừa 4cm
+
+9
+00:00:30,690 --> 00:00:33,280
+Em ướm cho mọi người xem tham khảo
+
+10
+00:00:36,360 --> 00:00:40,430
+Và hộp này vừa mạch 8 – 12 fet nha mọi người

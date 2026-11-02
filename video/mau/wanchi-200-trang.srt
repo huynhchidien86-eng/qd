@@ -1,0 +1,31 @@
+1
+00:00:01,360 --> 00:00:05,750
+Dạ xin chào mọi người, hôm nay em sẽ giới thiệu cho mọi người
+
+2
+00:00:05,500 --> 00:00:10,230
+hộp CNC IGBT quạt bên của Wanchi nha mọi người
+
+3
+00:00:09,980 --> 00:00:13,910
+Cái này có kích thước là 200 x 120 x 75
+
+4
+00:00:13,660 --> 00:00:17,610
+Bây giờ em sẽ đo thực tế cho mọi người xem tham khảo nha
+
+5
+00:00:28,020 --> 00:00:30,070
+Cái này quạt bên nha mọi người
+
+6
+00:00:29,820 --> 00:00:34,070
+Và hộp này vừa với quạt 4cm
+
+7
+00:00:37,690 --> 00:00:41,160
+Cái này của mình là phiên bản trắng nha mọi người
+
+8
+00:00:40,910 --> 00:00:43,720
+Nó đựng vừa mạch 8 – 12 fet nha mọi người

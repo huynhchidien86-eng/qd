@@ -1,0 +1,23 @@
+1
+00:00:00,700 --> 00:00:03,850
+Đây là ferrite hình xuyến
+
+2
+00:00:03,900 --> 00:00:06,750
+Hình xuyến có lớp cách điện màu xanh bên ngoài
+
+3
+00:00:07,900 --> 00:00:11,550
+Đường kính ngoài của nó là 63 nha các bạn
+
+4
+00:00:22,700 --> 00:00:25,350
+Chiều cao của nó là 25
+
+5
+00:00:28,500 --> 00:00:33,250
+Và đường kính trong của nó là 36mm, 37mm nha các bạn
+
+6
+00:00:35,500 --> 00:00:42,250
+Chiều dày của nó là 12,5mm nha các bạn

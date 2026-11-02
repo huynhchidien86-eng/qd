@@ -1,0 +1,31 @@
+1
+00:00:00,700 --> 00:00:04,850
+Đây là bộ phe than E55/20 nha các bạn
+
+2
+00:00:05,300 --> 00:00:10,450
+Chất liệu là phe ferrite PC40
+
+3
+00:00:13,300 --> 00:00:15,450
+Chiều ngang là 55
+
+4
+00:00:15,400 --> 00:00:18,050
+Chiều dày của nó là 20mm
+
+5
+00:00:18,100 --> 00:00:21,850
+Mình dùng băng keo để quấn phe than là 20mm nha các bạn
+
+6
+00:00:22,900 --> 00:00:27,750
+Kết hợp với khuôn 55 đứng, 11 chân cộng 11 chân
+
+7
+00:00:28,000 --> 00:00:32,850
+Băng keo để quấn khuôn là 35mm nha các bạn
+
+8
+00:00:37,500 --> 00:00:39,150
+Băng keo để quấn phe than là 20mm nha các bạn

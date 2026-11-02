@@ -1,0 +1,27 @@
+1
+00:00:01,100 --> 00:00:04,250
+Dạ xin chào mọi người, hôm nay em sẽ giới thiệu cho mọi người
+
+2
+00:00:04,000 --> 00:00:07,510
+hộp CNC bản Volume của Wanchi nha mọi người
+
+3
+00:00:07,660 --> 00:00:12,670
+Hộp này có kích thước là 168 x 92 x 56
+
+4
+00:00:12,880 --> 00:00:16,410
+Bây giờ em sẽ đo kích thước thực tế cho mọi người xem tham khảo nha
+
+5
+00:00:23,030 --> 00:00:25,620
+Hộp này vừa với quạt 4cm nha mọi người
+
+6
+00:00:29,950 --> 00:00:32,350
+Và hộp này đựng vừa mạch từ 4 – 6 fet
+
+7
+00:00:32,100 --> 00:00:34,580
+bên trong có ốc vít sẵn cho mình luôn

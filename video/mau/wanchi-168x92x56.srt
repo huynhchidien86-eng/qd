@@ -1,0 +1,39 @@
+1
+00:00:01,170 --> 00:00:03,080
+Dạ, xin chào mọi người
+
+2
+00:00:02,830 --> 00:00:04,800
+Hôm nay em sẽ giới thiệu cho mọi người
+
+3
+00:00:04,550 --> 00:00:07,280
+hộp CNC của Wanchi nha mọi người
+
+4
+00:00:07,030 --> 00:00:13,240
+Hộp này có kích thước là 168, 92 và 56mm
+
+5
+00:00:12,990 --> 00:00:17,080
+Bây giờ em sẽ đo kích thước thực tế cho mọi người xem tham khảo nha
+
+6
+00:00:24,730 --> 00:00:27,400
+Hộp này vừa với quạt 4cm nha mọi người
+
+7
+00:00:31,590 --> 00:00:35,240
+Và hộp này đựng vừa mạch từ 4 – 6 fet
+
+8
+00:00:34,990 --> 00:00:37,840
+Trong này có ốc vít sẵn cho mình luôn
+
+9
+00:00:41,370 --> 00:00:43,120
+Trong này là như này nha mọi người
+
+10
+00:00:46,440 --> 00:00:47,510
+Rất là cứng cáp

@@ -1,0 +1,19 @@
+1
+00:00:00,100 --> 00:00:05,850
+Xin chào các bác, hôm nay em về cái mẫu ống gen sợi thủy tinh nha
+
+2
+00:00:12,000 --> 00:00:16,350
+Ở đây em có rất nhiều size nha
+
+3
+00:00:18,000 --> 00:00:19,550
+Ở đây nữa nha
+
+4
+00:00:22,900 --> 00:00:24,450
+Size nhỏ, lớn đều có hết nha
+
+5
+00:00:27,600 --> 00:00:28,850
+Để em test cho các bác xem thử nha

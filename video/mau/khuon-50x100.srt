@@ -1,0 +1,43 @@
+1
+00:00:01,780 --> 00:00:06,590
+Xin chào mọi người nha, hôm nay giới thiệu cho mọi người cái khuôn biến áp nha
+
+2
+00:00:07,080 --> 00:00:10,170
+Size 50 x 100 nha
+
+3
+00:00:09,920 --> 00:00:17,510
+Mình sẽ đo thực tế cho các bạn xem nha
+
+4
+00:00:19,080 --> 00:00:22,670
+Khuôn hợp Fe 50 nha
+
+5
+00:00:22,420 --> 00:00:29,010
+Dài thực tế là tầm khoảng 98mm nha các bạn
+
+6
+00:00:31,700 --> 00:00:33,570
+98, 99mm
+
+7
+00:00:35,950 --> 00:00:38,280
+Đây chiều cao của khuôn nha
+
+8
+00:00:40,300 --> 00:00:43,590
+Tầm khoảng 69mm nha các bạn
+
+9
+00:00:43,340 --> 00:00:48,870
+Khuôn này lắp được tầm khoảng 11,5kg
+
+10
+00:00:48,620 --> 00:00:54,690
+Khuôn chịu nhiệt độ từ 0 tới 80°C
+
+11
+00:00:56,710 --> 00:00:59,960
+Khuôn chuyên dùng cho biến áp, rất là đẹp nha
