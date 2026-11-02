@@ -1,0 +1,9 @@
+# Lời đọc ĐỒNG HỒ BÁO PIN (clip p4/n-5305448679023.mp4, 51s ngang 1280x720, logo QUYNDIEN, không lời; thử bằng nguồn chỉnh áp).
+Đồng hồ báo dung lượng ắc quy, có hai cổng USB. | Đồng hồ báo dung lượng ắc quy, có hai cổng u ét bê.
+@7 Vừa hiện điện áp, vừa có vạch báo pin.
+@12 Thử hạ áp nguồn, vạch pin giảm dần theo.
+@19 Áp xuống còn 10V, chỉ còn vạch đỏ. | Áp xuống còn mười vôn, chỉ còn vạch đỏ.
+@27 Tăng áp lên lại, vạch xanh sáng đầy.
+@35 Số đo bám sát số trên nguồn.
+@40 Mặt sau gọn, chỉ hai dây đỏ đen.
+@46.5 | Cần đồng hồ báo pin, anh em ghé Linh Kiện Quỳnh Diễn nhé.

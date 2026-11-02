@@ -1,0 +1,9 @@
+# Lời đọc VÔN KẾ LED XANH (clip p4/n-5331509475315.mp4, 58s ngang 1280x720, không lời; thử 2 nguồn chỉnh áp, thấy ~5V, 12V, 24V).
+Vôn kế điện tử, số LED xanh ba chữ số. | Vôn kế điện tử, số lét xanh ba chữ số.
+@7 Nối vào nguồn, đồng hồ sáng số ngay.
+@12 Thử áp thấp khoảng 5V, vẫn đo được. | Thử áp thấp khoảng năm vôn, vẫn đo được.
+@22 Vặn nguồn lên xuống, số nhảy theo.
+@33 Lên tới 24V, đồng hồ vẫn đo rõ. | Lên tới hai mươi bốn vôn, đồng hồ vẫn đo rõ.
+@42 Số đo bám sát số trên nguồn.
+@48 Đồng hồ nhỏ gọn, lắp vào hộp dễ dàng.
+@53.5 | Cần vôn kế gắn mạch, anh em ghé Linh Kiện Quỳnh Diễn nhé.
